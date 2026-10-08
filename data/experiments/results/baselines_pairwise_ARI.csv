@@ -1,0 +1,11 @@
+,ARI
+ours vs distance_top8,0.636
+ours vs distance_only,0.805
+ours vs attribute_only,0.082
+ours vs random,0.0
+distance_top8 vs distance_only,0.771
+distance_top8 vs attribute_only,0.07
+distance_top8 vs random,0.002
+distance_only vs attribute_only,0.077
+distance_only vs random,0.001
+attribute_only vs random,-0.0

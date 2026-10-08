@@ -1,0 +1,9 @@
+# упакованные копии и старый 36MB референс (не артефакты отчёта)
+*.zip
+visualization/index.html
+visualization/node_modules/
+__pycache__/
+*.pyc
+data/results/geojson/mo_clipped.geojson
+data/experiments/inputs/raw/qol_all_cities.csv
+out/

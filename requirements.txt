@@ -1,0 +1,15 @@
+# Python >= 3.12 (проверено на 3.13)
+# Установка: python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt
+# Все шаги run_all.py (кроме viz, там нужен node) работают в этом окружении.
+
+pandas==3.0.6
+numpy==2.5.3
+scipy==1.18.1
+python-igraph==1.0.0
+scikit-learn==1.9.1
+PyYAML==6.0.3          # config.yaml
+geopandas==1.2.0       # только visualization/ (геометрия МО, геоjson карты)
+shapely==2.1.2
+pyproj==3.8.0          # paper_exp2/3: проекции для расстояний
+openpyxl==3.1.5        # basket_emiss_pars_hackathon.xlsx
+pyarrow==25.0.1        # паркетники в data/experiments/inputs/

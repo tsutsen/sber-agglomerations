@@ -1,0 +1,29 @@
+[
+ {
+  "dlevel_bin": "низкий ΔL",
+  "n_edge": 189,
+  "n_nedge": 903,
+  "edge_gap_lt005": 0.079,
+  "nedge_gap_lt005": 0.0,
+  "edge_gap_lt010": 0.101,
+  "nedge_gap_lt010": 0.0
+ },
+ {
+  "dlevel_bin": "средний",
+  "n_edge": 121,
+  "n_nedge": 975,
+  "edge_gap_lt005": 0.174,
+  "nedge_gap_lt005": 0.0,
+  "edge_gap_lt010": 0.207,
+  "nedge_gap_lt010": 0.001
+ },
+ {
+  "dlevel_bin": "высокий",
+  "n_edge": 137,
+  "n_nedge": 955,
+  "edge_gap_lt005": 0.409,
+  "nedge_gap_lt005": 0.0,
+  "edge_gap_lt010": 0.657,
+  "nedge_gap_lt010": 0.185
+ }
+]

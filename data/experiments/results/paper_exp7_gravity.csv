@@ -1,0 +1,4 @@
+variant,edges,clusters,clusters_3plus,q,purity,ari
+"prod-правило, top8 по cos (база)",3637,872,133,0.84,0.953,0.726
+"prod-правило, score = cos - g(d)",3637,871,132,0.802,0.95,0.712
+"prod-правило, score = cos / g(d)",3637,871,132,0.802,0.95,0.712

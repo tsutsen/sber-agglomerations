@@ -1,0 +1,12 @@
+run,edges,ari,purity,clusters,n3,ari_tune,ari_validate
+production k=8,3637,0.726,0.953,872.0,133.0,,
+ablation: log-level only (1d),3637,0.689,0.953,874.0,134.0,,
+ablation: 5 shares raw (no level),3637,0.724,0.944,872.0,133.0,,
+ablation: z-shares (5d),3637,0.647,0.994,980.0,144.0,,
+control: raw 6d (production),3637,0.744,0.962,872.0,133.0,,
+control: z6,3637,0.649,0.994,975.0,144.0,,
+production k=5,2840,0.677,0.959,875.0,,,
+production k=12,4638,0.705,0.938,871.0,,,
+holdout cutoff=40,2996,,,,,0.547,0.606
+holdout cutoff=50,3637,,,,,0.692,0.773
+holdout cutoff=60,4414,,,,,0.539,0.792

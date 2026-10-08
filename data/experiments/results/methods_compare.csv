@@ -1,0 +1,5 @@
+variant,n_clusters,MQ_modularity,ARI_vs_official,share_mo_in_clusters_3plus
+cos + louvain,873,0.831,0.714,0.599
+cos + agglomerative,873,,0.737,0.599
+pearson + louvain,872,0.841,0.744,0.599
+pearson + agglomerative,872,,0.737,0.599

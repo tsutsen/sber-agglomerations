@@ -1,0 +1,6 @@
+variant,edges,clusters,clusters_3plus,q,purity,ARI_vs_official
+ours,3637,872,133,0.842,0.962,0.744
+distance_top8,3028,871,149,0.99,0.927,0.658
+distance_only,18942,852,135,0.51,0.935,0.692
+attribute_only,11608,63,16,0.807,0.226,0.06
+random,3630,107,25,0.592,0.188,-0.002

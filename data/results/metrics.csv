@@ -1,0 +1,7 @@
+metric,value
+SW (silhouette),-0.385
+CH (calinski-harabasz),33.1
+S_Dbw (davies-bouldin),9.828
+"AVI (VI vs official, nat.)",20.584
+AVU (ARI vs official),0.82
+MQ (modularity),0.835

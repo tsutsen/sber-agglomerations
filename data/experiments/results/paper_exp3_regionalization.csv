@@ -1,0 +1,4 @@
+method,K,spatial_coh,null_max,p,ARI,silhouette,PP_med
+mutual-kNN + Louvain (наш),16,0.512,0.237,0.048,0.129,0.086,0.0113
+Ward + connectivity (K=17),17,0.69,0.284,0.048,0.281,0.07,0.0487
+"SKATER (MST, K=17)",17,0.716,0.715,0.048,0.003,-0.37,0.2106

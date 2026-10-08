@@ -1,0 +1,216 @@
+{
+ "rf_annual_2024_trl": 48.9,
+ "rf_annual_2023_trl": 42.1,
+ "n_regions": 85,
+ "coef24_range": [
+  0.86,
+  1.62
+ ],
+ "premium_trl": 5.53,
+ "discount_trl": 2.11,
+ "premium_msk_trl": 4.05,
+ "premium_ex_msk_trl": 1.48,
+ "premium23_trl": 4.32,
+ "premium_delta_trl": 1.21,
+ "premium_top5_bln": {
+  "Москва": 4049.0,
+  "Московская область": 561.0,
+  "Приморский край": 137.0,
+  "Республика Саха (Якутия)": 132.0,
+  "Хабаровский край": 109.0
+ },
+ "dyn_median": 0.19,
+ "dyn_p05": -1.33,
+ "dyn_p95": 2.1,
+ "mkt_acc_rho": -0.059,
+ "qol_income_rho": -0.037,
+ "qol_income_p": 0.5854616637671539,
+ "cluster_share_rho": -0.298,
+ "n_cross_pairs": 3280,
+ "n_cross_edges": 447,
+ "cross_edge_gap_lt005": 0.217,
+ "cross_nedge_gap_lt005": 0.0,
+ "cross_edge_gap_lt010": 0.318,
+ "cross_nedge_gap_lt010": 0.063,
+ "cross_edge_gap_median": 0.355,
+ "cross_nedge_gap_median": 0.355,
+ "cos_ge0999_share": 0.998,
+ "n_candidate_pairs": 18942,
+ "premium_share23": 10.3,
+ "premium_share24": 11.3,
+ "decomp": {
+  "log_salary": 0.732,
+  "dist_hub": 0.469,
+  "mkt": -0.488
+ },
+ "decomp_ex_msk": {
+  "log_salary": 0.721,
+  "dist_hub": 0.528
+ },
+ "n_hubs": 31,
+ "cluster_premium_total_bln": 5525.0,
+ "n_clusters_cross_region": 50,
+ "n_clusters_ge5pct_gap": 21,
+ "premium_growth_top5": {
+  "Москва": 911.0,
+  "Московская область": 138.0,
+  "Ханты-Мансийский автономный округ — Югра": 35.0,
+  "Приморский край": 32.0,
+  "Красноярский край": 17.0
+ },
+ "premium_growth_ex_msk_bln": 297.0,
+ "n_cl_diam_gt500": 3,
+ "prem_bln_cl_diam_gt500": 183.0,
+ "cluster_premium_top15": [
+  {
+   "cluster": 477,
+   "size": 119,
+   "regions": 3,
+   "premium_bln": 2563.1,
+   "price_gap": 0.484,
+   "name": "Балашиха — Одинцовский — Красногорск",
+   "region": "Москва",
+   "diam_km": 189.3
+  },
+  {
+   "cluster": 864,
+   "size": 64,
+   "regions": 1,
+   "premium_bln": 1936.1,
+   "price_gap": 0.0,
+   "name": "Хорошево-Мневники — Раменки — Пресненский",
+   "region": "Москва",
+   "diam_km": 41.1
+  },
+  {
+   "cluster": 256,
+   "size": 7,
+   "regions": 2,
+   "premium_bln": 156.0,
+   "price_gap": 0.36,
+   "name": "Владивостокский — Петропавловск-Камчатский — Артемовский",
+   "region": "Приморский край",
+   "diam_km": 2314.2
+  },
+  {
+   "cluster": 340,
+   "size": 2,
+   "regions": 1,
+   "premium_bln": 65.8,
+   "price_gap": 0.0,
+   "name": "Хабаровск — Хабаровский",
+   "region": "Хабаровский край",
+   "diam_km": 118.6
+  },
+  {
+   "cluster": 124,
+   "size": 2,
+   "regions": 1,
+   "premium_bln": 60.4,
+   "price_gap": 0.0,
+   "name": "Якутск — Мегино-Кангаласский",
+   "region": "Республика Саха (Якутия)",
+   "diam_km": 80.9
+  },
+  {
+   "cluster": 552,
+   "size": 13,
+   "regions": 3,
+   "premium_bln": 40.0,
+   "price_gap": 0.184,
+   "name": "Рязань — Коломна — Воскресенск",
+   "region": "Московская область",
+   "diam_km": 155.0
+  },
+  {
+   "cluster": 816,
+   "size": 2,
+   "regions": 1,
+   "premium_bln": 33.4,
+   "price_gap": 0.0,
+   "name": "Сургут — Сургутский",
+   "region": "Ханты-Мансийский автономный округ — Югра",
+   "diam_km": 22.0
+  },
+  {
+   "cluster": 403,
+   "size": 60,
+   "regions": 6,
+   "premium_bln": 32.1,
+   "price_gap": 0.214,
+   "name": "Ярославль — Владимир — Иваново",
+   "region": "Ивановская область",
+   "diam_km": 348.9
+  },
+  {
+   "cluster": 558,
+   "size": 2,
+   "regions": 1,
+   "premium_bln": 26.7,
+   "price_gap": 0.0,
+   "name": "Мурманск — Кольский",
+   "region": "Мурманская область",
+   "diam_km": 55.6
+  },
+  {
+   "cluster": 545,
+   "size": 2,
+   "regions": 1,
+   "premium_bln": 26.5,
+   "price_gap": 0.0,
+   "name": "Магадан — Ольский",
+   "region": "Магаданская область",
+   "diam_km": 33.4
+  },
+  {
+   "cluster": 379,
+   "size": 4,
+   "regions": 1,
+   "premium_bln": 25.6,
+   "price_gap": 0.0,
+   "name": "Архангельск — Северодвинск — Приморский",
+   "region": "Архангельская область",
+   "diam_km": 1522.7
+  },
+  {
+   "cluster": 810,
+   "size": 3,
+   "regions": 1,
+   "premium_bln": 22.9,
+   "price_gap": 0.0,
+   "name": "Нижневартовск — Мегион — Нижневартовский",
+   "region": "Ханты-Мансийский автономный округ — Югра",
+   "diam_km": 204.1
+  },
+  {
+   "cluster": 341,
+   "size": 3,
+   "regions": 1,
+   "premium_bln": 22.9,
+   "price_gap": 0.0,
+   "name": "Комсомольск-на-Амуре — Комсомольский — Солнечный",
+   "region": "Хабаровский край",
+   "diam_km": 157.8
+  },
+  {
+   "cluster": 265,
+   "size": 6,
+   "regions": 1,
+   "premium_bln": 21.7,
+   "price_gap": 0.0,
+   "name": "Красноярск — Емельяновский — Сосновоборск",
+   "region": "Красноярский край",
+   "diam_km": 74.5
+  },
+  {
+   "cluster": 474,
+   "size": 18,
+   "regions": 1,
+   "premium_bln": 20.2,
+   "price_gap": 0.0,
+   "name": "Калининград — Гурьевский — Зеленоградский",
+   "region": "Калининградская область",
+   "diam_km": 170.2
+  }
+ ]
+}

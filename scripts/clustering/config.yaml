@@ -1,0 +1,16 @@
+# Гиперпараметры пайплайна. Читаются src/config.py; tune.py перебирает
+# cutoff/k без изменения этого файла (результаты — out/tune_grid.csv).
+network:
+  d_cutoff_km: 50.0   # пространственный радиус кандидата (по дорогам)
+  knn: 8              # топ-K соседей по сходству профиля
+  window_months: 6    # скользящее окно, месяцев
+  step_months: 3      # шаг сдвига окон
+
+clustering:
+  algorithm: louvain  # louvain | agglomerative
+  seed: 42
+
+comparison:
+  partial_coverage: 0.70       # покрытие < 70% официальной агломерации -> match_partial
+  extra_share: 0.30            # > 30% МО кластера вне перечня -> match_expanded
+  scattered_min_clusters: 3    # МО агломерации в >= N разных кластерах -> "разнесено"

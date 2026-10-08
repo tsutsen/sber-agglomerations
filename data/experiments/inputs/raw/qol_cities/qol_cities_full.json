@@ -1,0 +1,2042 @@
+[
+ {
+  "name": "Абакан",
+  "nameEng": "Abakan",
+  "lat": 53.7223325,
+  "lon": 91.4436721,
+  "region": "Республика Хакасия",
+  "regionEng": "Republic of Khakassia"
+ },
+ {
+  "name": "Азов",
+  "nameEng": "Azov",
+  "lat": 47.1,
+  "lon": 39.41667,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Алексин",
+  "nameEng": "Aleksin",
+  "lat": 54.50668432569533,
+  "lon": 37.039481076857406,
+  "region": "Тульская область",
+  "regionEng": "Tula Region"
+ },
+ {
+  "name": "Альметьевск",
+  "nameEng": "Almetyevsk",
+  "lat": 54.89371,
+  "lon": 52.31729,
+  "region": "Республика Татарстан",
+  "regionEng": "Republic of Tatarstan"
+ },
+ {
+  "name": "Анадырь",
+  "nameEng": "Anadyr",
+  "lat": 64.73333,
+  "lon": 177.51667,
+  "region": "Чукотский автономный округ",
+  "regionEng": "Chukotka Autonomous Area"
+ },
+ {
+  "name": "Анапа",
+  "nameEng": "Anapa",
+  "lat": 44.91070224174035,
+  "lon": 37.32250471076264,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Ангарск",
+  "nameEng": "Angarsk",
+  "lat": 52.55,
+  "lon": 103.9,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Анжеро-Судженск",
+  "nameEng": "Anzhero-Sudzhensk",
+  "lat": 56.077808,
+  "lon": 86.019356,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Арзамас",
+  "nameEng": "Arzamas",
+  "lat": 55.4,
+  "lon": 43.81667,
+  "region": "Нижегородская область",
+  "regionEng": "Nizhny Novgorod Region"
+ },
+ {
+  "name": "Армавир",
+  "nameEng": "Armavir",
+  "lat": 45.0,
+  "lon": 41.11667,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Арсеньев",
+  "nameEng": "Arsenyev",
+  "lat": 44.1608008,
+  "lon": 133.2889113,
+  "region": "Приморский край",
+  "regionEng": "Primorye Territory"
+ },
+ {
+  "name": "Артем",
+  "nameEng": "Artem",
+  "lat": 43.36667,
+  "lon": 132.2,
+  "region": "Приморский край",
+  "regionEng": "Primorye Territory"
+ },
+ {
+  "name": "Архангельск",
+  "nameEng": "Arkhangelsk",
+  "lat": 64.54725,
+  "lon": 40.56016,
+  "region": "Архангельская область",
+  "regionEng": "Arkhangelsk Region"
+ },
+ {
+  "name": "Асбест",
+  "nameEng": "Asbest",
+  "lat": 57.02710404327132,
+  "lon": 61.48775031070583,
+  "region": "Свердловская область",
+  "regionEng": "Sverdlovsk Region"
+ },
+ {
+  "name": "Астрахань",
+  "nameEng": "Astrakhan",
+  "lat": 46.3588,
+  "lon": 48.05993,
+  "region": "Астраханская область",
+  "regionEng": "Astrakhan Region"
+ },
+ {
+  "name": "Ачинск",
+  "nameEng": "Achinsk",
+  "lat": 56.25,
+  "lon": 90.5,
+  "region": "Красноярский край",
+  "regionEng": "Krasnoyarsk Territory"
+ },
+ {
+  "name": "Байкальск",
+  "nameEng": "Baikalsk",
+  "lat": 51.512511616785375,
+  "lon": 104.1388305236891,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Балаково",
+  "nameEng": "Balakovo",
+  "lat": 52.01812,
+  "lon": 47.819141,
+  "region": "Саратовская область",
+  "regionEng": "Saratov Region"
+ },
+ {
+  "name": "Балашиха",
+  "nameEng": "Balashikha",
+  "lat": 55.8036225,
+  "lon": 37.9646488,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Балтийск",
+  "nameEng": "Baltiysk",
+  "lat": 54.65673212463423,
+  "lon": 19.913694739069047,
+  "region": "Калининградская область",
+  "regionEng": "Kaliningrad Region"
+ },
+ {
+  "name": "Барнаул",
+  "nameEng": "Barnaul",
+  "lat": 53.3475493,
+  "lon": 83.7788448,
+  "region": "Алтайский край",
+  "regionEng": "Altai Territory"
+ },
+ {
+  "name": "Батайск",
+  "nameEng": "Bataysk",
+  "lat": 47.138527,
+  "lon": 39.742348,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Белгород",
+  "nameEng": "Belgorod",
+  "lat": 50.5955595,
+  "lon": 36.5873394,
+  "region": "Белгородская область",
+  "regionEng": "Belgorod Region"
+ },
+ {
+  "name": "Белово",
+  "nameEng": "Belovo",
+  "lat": 54.419323,
+  "lon": 86.303429,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Белогорск",
+  "nameEng": "Belogorsk",
+  "lat": 50.921326,
+  "lon": 128.47287,
+  "region": "Амурская область",
+  "regionEng": "Amur Region"
+ },
+ {
+  "name": "Белорецк",
+  "nameEng": "Beloretsk",
+  "lat": 53.9680705,
+  "lon": 58.4099549,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Бердск",
+  "nameEng": "Berdsk",
+  "lat": 54.75795,
+  "lon": 83.1068095,
+  "region": "Новосибирская область",
+  "regionEng": "Novosibirsk Region"
+ },
+ {
+  "name": "Березники",
+  "nameEng": "Berezniki",
+  "lat": 59.4084171,
+  "lon": 56.8036958,
+  "region": "Пермский край",
+  "regionEng": "Perm Territory"
+ },
+ {
+  "name": "Бийск",
+  "nameEng": "Biysk",
+  "lat": 52.5394905,
+  "lon": 85.2148673,
+  "region": "Алтайский край",
+  "regionEng": "Altai Territory"
+ },
+ {
+  "name": "Биробиджан",
+  "nameEng": "Birobidzhan",
+  "lat": 48.7881668,
+  "lon": 132.9282082,
+  "region": "Еврейская автономная область",
+  "regionEng": "Jewish Autonomous Region"
+ },
+ {
+  "name": "Благовещенск",
+  "nameEng": "Blagoveshchensk",
+  "lat": 55.049854,
+  "lon": 55.955224,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Бодайбо",
+  "nameEng": "Bodaibo",
+  "lat": 57.847975,
+  "lon": 114.199867,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Бокситогорск",
+  "nameEng": "Boksitogorsk",
+  "lat": 59.473576,
+  "lon": 33.847675,
+  "region": "Ленинградская область",
+  "regionEng": "Leningrad Region"
+ },
+ {
+  "name": "Бор",
+  "nameEng": "Bor",
+  "lat": 56.3598289,
+  "lon": 44.0542641,
+  "region": "Нижегородская область",
+  "regionEng": "Nizhny Novgorod Region"
+ },
+ {
+  "name": "Боровичи",
+  "nameEng": "Borovichi",
+  "lat": 58.389009,
+  "lon": 33.9068275,
+  "region": "Новгородская область",
+  "regionEng": "Novgorod Region"
+ },
+ {
+  "name": "Братск",
+  "nameEng": "Bratsk",
+  "lat": 56.1517085,
+  "lon": 101.6334907,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Брянск",
+  "nameEng": "Bryansk",
+  "lat": 53.2423778,
+  "lon": 34.3668288,
+  "region": "Брянская область",
+  "regionEng": "Bryansk Region"
+ },
+ {
+  "name": "Владивосток",
+  "nameEng": "Vladivostok",
+  "lat": 43.1150678,
+  "lon": 131.8855768,
+  "region": "Приморский край",
+  "regionEng": "Primorye Territory"
+ },
+ {
+  "name": "Владикавказ",
+  "nameEng": "Vladikavkaz",
+  "lat": 43.024593,
+  "lon": 44.68211,
+  "region": "Республика Северная Осетия – Алания",
+  "regionEng": "Republic of North Ossetia – Alania"
+ },
+ {
+  "name": "Владимир",
+  "nameEng": "Vladimir",
+  "lat": 56.1288899,
+  "lon": 40.4075203,
+  "region": "Владимирская область",
+  "regionEng": "Vladimir Region"
+ },
+ {
+  "name": "Волгоград",
+  "nameEng": "Volgograd",
+  "lat": 48.7081906,
+  "lon": 44.5153353,
+  "region": "Волгоградская область",
+  "regionEng": "Volgograd Region"
+ },
+ {
+  "name": "Волгодонск",
+  "nameEng": "Volgodonsk",
+  "lat": 47.5128177,
+  "lon": 42.1717606,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Волжский",
+  "nameEng": "Volzhsky",
+  "lat": 48.80556,
+  "lon": 44.74167,
+  "region": "Волгоградская область",
+  "regionEng": "Volgograd Region"
+ },
+ {
+  "name": "Вологда",
+  "nameEng": "Vologda",
+  "lat": 59.21807,
+  "lon": 39.89781,
+  "region": "Вологодская область",
+  "regionEng": "Vologda Region"
+ },
+ {
+  "name": "Вольск",
+  "nameEng": "Volsk",
+  "lat": 52.0810108080042,
+  "lon": 47.354894626807635,
+  "region": "Саратовская область",
+  "regionEng": "Saratov Region"
+ },
+ {
+  "name": "Воркута",
+  "nameEng": "Vorkuta",
+  "lat": 67.49950270196281,
+  "lon": 64.04414977815075,
+  "region": "Республика Коми",
+  "regionEng": "Komi Republic"
+ },
+ {
+  "name": "Воронеж",
+  "nameEng": "Voronezh",
+  "lat": 51.6605982,
+  "lon": 39.2005858,
+  "region": "Воронежская область",
+  "regionEng": "Voronezh Region"
+ },
+ {
+  "name": "Воткинск",
+  "nameEng": "Votkinsk",
+  "lat": 57.047997240537065,
+  "lon": 53.97091977454836,
+  "region": "Удмуртская Республика",
+  "regionEng": "Udmurtian Republic"
+ },
+ {
+  "name": "Всеволожск",
+  "nameEng": "Vsevolozhsk",
+  "lat": 60.024006,
+  "lon": 30.646042,
+  "region": "Ленинградская область",
+  "regionEng": "Leningrad Region"
+ },
+ {
+  "name": "Выборг",
+  "nameEng": "Vyborg",
+  "lat": 60.709217,
+  "lon": 28.744051,
+  "region": "Ленинградская область",
+  "regionEng": "Leningrad Region"
+ },
+ {
+  "name": "Выкса",
+  "nameEng": "Vyksa",
+  "lat": 55.32267393883756,
+  "lon": 42.157045861965024,
+  "region": "Нижегородская область",
+  "regionEng": "Nizhny Novgorod Region"
+ },
+ {
+  "name": "Гатчина",
+  "nameEng": "Gatchina",
+  "lat": 59.5706273,
+  "lon": 30.1305083,
+  "region": "Ленинградская область",
+  "regionEng": "Leningrad Region"
+ },
+ {
+  "name": "Геленджик",
+  "nameEng": "Gelendzhik",
+  "lat": 44.57169892394439,
+  "lon": 38.053718492174646,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Глазов",
+  "nameEng": "Glazov",
+  "lat": 58.139884308591164,
+  "lon": 52.644437333000795,
+  "region": "Удмуртская Республика",
+  "regionEng": "Udmurtian Republic"
+ },
+ {
+  "name": "Горно-Алтайск",
+  "nameEng": "Gorno-Altaisk",
+  "lat": 51.957775,
+  "lon": 85.963653,
+  "region": "Республика Алтай",
+  "regionEng": "Republic of Altai"
+ },
+ {
+  "name": "Грозный",
+  "nameEng": "Grozny",
+  "lat": 43.3197031,
+  "lon": 45.6934308,
+  "region": "Чеченская Республика",
+  "regionEng": "Chechen Republic"
+ },
+ {
+  "name": "Губкин",
+  "nameEng": "Gubkin",
+  "lat": 51.283714,
+  "lon": 37.53466,
+  "region": "Белгородская область",
+  "regionEng": "Belgorod Region"
+ },
+ {
+  "name": "Дербент",
+  "nameEng": "Derbent",
+  "lat": 42.057858,
+  "lon": 48.2887648,
+  "region": "Республика Дагестан",
+  "regionEng": "Republic of Daghestan"
+ },
+ {
+  "name": "Дзержинск",
+  "nameEng": "Dzerzhinsk",
+  "lat": 56.2382157,
+  "lon": 43.4617405,
+  "region": "Нижегородская область",
+  "regionEng": "Nizhny Novgorod Region"
+ },
+ {
+  "name": "Дивногорск",
+  "nameEng": "Divnogorsk",
+  "lat": 55.957726,
+  "lon": 92.380148,
+  "region": "Красноярский край",
+  "regionEng": "Krasnoyarsk Territory"
+ },
+ {
+  "name": "Димитровград",
+  "nameEng": "Dimitrovgrad",
+  "lat": 54.2188995,
+  "lon": 49.6038982,
+  "region": "Ульяновская область",
+  "regionEng": "Ulyanovsk Region"
+ },
+ {
+  "name": "Долгопрудный",
+  "nameEng": "Dolgoprudny",
+  "lat": 55.9341491,
+  "lon": 37.5142417,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Домодедово",
+  "nameEng": "Domodedovo",
+  "lat": 55.4091211,
+  "lon": 37.9041662,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Дубна",
+  "nameEng": "Dubna",
+  "lat": 56.7362705,
+  "lon": 37.1623696,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Евпатория",
+  "nameEng": "Evpatoria",
+  "lat": 45.1907635,
+  "lon": 33.3679049,
+  "region": "Республика Крым",
+  "regionEng": "Republic of Crimea"
+ },
+ {
+  "name": "Егорьевск",
+  "nameEng": "Yegoryevsk",
+  "lat": 55.3829765,
+  "lon": 39.0356223,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Екатеринбург",
+  "nameEng": "Ekaterinburg",
+  "lat": 56.839104,
+  "lon": 60.60825,
+  "region": "Свердловская область",
+  "regionEng": "Sverdlovsk Region"
+ },
+ {
+  "name": "Елабуга",
+  "nameEng": "Elabuga",
+  "lat": 55.7577131,
+  "lon": 52.0539938,
+  "region": "Республика Татарстан",
+  "regionEng": "Republic of Tatarstan"
+ },
+ {
+  "name": "Елец",
+  "nameEng": "Yelets",
+  "lat": 52.6219865,
+  "lon": 38.5003298,
+  "region": "Липецкая область",
+  "regionEng": "Lipetsk Region"
+ },
+ {
+  "name": "Ессентуки",
+  "nameEng": "Yessentuki",
+  "lat": 44.04815991755957,
+  "lon": 42.87457505906181,
+  "region": "Ставропольский край",
+  "regionEng": "Stavropol Territory"
+ },
+ {
+  "name": "Ефремов",
+  "nameEng": "Efremov",
+  "lat": 53.144371591132156,
+  "lon": 38.10315224224371,
+  "region": "Тульская область",
+  "regionEng": "Tula Region"
+ },
+ {
+  "name": "Железногорск-Илимский",
+  "nameEng": "Zheleznogorsk-Ilimsky",
+  "lat": 56.584848,
+  "lon": 104.114292,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Жуковский",
+  "nameEng": "Zhukovsky",
+  "lat": 55.5972801,
+  "lon": 38.1199863,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Заринск",
+  "nameEng": "Zarinsk",
+  "lat": 53.707915,
+  "lon": 84.9348606,
+  "region": "Алтайский край",
+  "regionEng": "Altai Territory"
+ },
+ {
+  "name": "Зеленодольск",
+  "nameEng": "Zelenodolsk",
+  "lat": 55.8477605,
+  "lon": 48.5097031,
+  "region": "Республика Татарстан",
+  "regionEng": "Republic of Tatarstan"
+ },
+ {
+  "name": "Златоуст",
+  "nameEng": "Zlatoust",
+  "lat": 55.1674213,
+  "lon": 59.6792625,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Иваново",
+  "nameEng": "Ivanovo",
+  "lat": 56.9984452,
+  "lon": 40.9737394,
+  "region": "Ивановская область",
+  "regionEng": "Ivanovo Region"
+ },
+ {
+  "name": "Ивантеевка",
+  "nameEng": "Ivanteevka",
+  "lat": 55.9714098,
+  "lon": 37.9200739,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Ижевск",
+  "nameEng": "Izhevsk",
+  "lat": 56.866557,
+  "lon": 53.2094166,
+  "region": "Удмуртская Республика",
+  "regionEng": "Udmurtian Republic"
+ },
+ {
+  "name": "Иркутск",
+  "nameEng": "Irkutsk",
+  "lat": 52.2891225,
+  "lon": 104.279829,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Йошкар-Ола",
+  "nameEng": "Yoshkar-Ola",
+  "lat": 56.6328248,
+  "lon": 47.8972462,
+  "region": "Республика Марий Эл",
+  "regionEng": "Republic of Mari El"
+ },
+ {
+  "name": "Казань",
+  "nameEng": "Kazan",
+  "lat": 55.7823547,
+  "lon": 49.1242266,
+  "region": "Республика Татарстан",
+  "regionEng": "Republic of Tatarstan"
+ },
+ {
+  "name": "Калининград",
+  "nameEng": "Kaliningrad",
+  "lat": 54.710128,
+  "lon": 20.5105838,
+  "region": "Калининградская область",
+  "regionEng": "Kaliningrad Region"
+ },
+ {
+  "name": "Калуга",
+  "nameEng": "Kaluga",
+  "lat": 54.5101087,
+  "lon": 36.2598115,
+  "region": "Калужская область",
+  "regionEng": "Kaluga Region"
+ },
+ {
+  "name": "Каменск-Уральский",
+  "nameEng": "Kamensk-Uralsky",
+  "lat": 56.415451,
+  "lon": 61.917797,
+  "region": "Свердловская область",
+  "regionEng": "Sverdlovsk Region"
+ },
+ {
+  "name": "Камышин",
+  "nameEng": "Kamyshin",
+  "lat": 50.0808422,
+  "lon": 45.4048003,
+  "region": "Волгоградская область",
+  "regionEng": "Volgograd Region"
+ },
+ {
+  "name": "Кандалакша",
+  "nameEng": "Kandalaksha",
+  "lat": 67.151256,
+  "lon": 32.412832,
+  "region": "Мурманская область",
+  "regionEng": "Murmansk Region"
+ },
+ {
+  "name": "Каспийск",
+  "nameEng": "Kaspiysk",
+  "lat": 42.8881414,
+  "lon": 47.6424676,
+  "region": "Республика Дагестан",
+  "regionEng": "Republic of Daghestan"
+ },
+ {
+  "name": "Кемерово",
+  "nameEng": "Kemerovo",
+  "lat": 55.3550907,
+  "lon": 86.0871213,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Керчь",
+  "nameEng": "Kerch",
+  "lat": 45.3534002,
+  "lon": 36.4538645,
+  "region": "Республика Крым",
+  "regionEng": "Republic of Crimea"
+ },
+ {
+  "name": "Киров",
+  "nameEng": "Kirov",
+  "lat": 58.6035661,
+  "lon": 49.6666241,
+  "region": "Кировская область",
+  "regionEng": "Kirov Region"
+ },
+ {
+  "name": "Кирово-Чепецк",
+  "nameEng": "Kirovo-Chepetsk",
+  "lat": 58.533675640143066,
+  "lon": 50.0194857514091,
+  "region": "Кировская область",
+  "regionEng": "Kirov Region"
+ },
+ {
+  "name": "Кировск",
+  "nameEng": "Kirovsk",
+  "lat": 67.62638738352496,
+  "lon": 33.682211848154815,
+  "region": "Мурманская область",
+  "regionEng": "Murmansk Region"
+ },
+ {
+  "name": "Киселевск",
+  "nameEng": "Kiselevsk",
+  "lat": 54.0049872,
+  "lon": 86.6354771,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Кисловодск",
+  "nameEng": "Kislovodsk",
+  "lat": 43.886062653225366,
+  "lon": 42.73518594305171,
+  "region": "Ставропольский край",
+  "regionEng": "Stavropol Territory"
+ },
+ {
+  "name": "Клин",
+  "nameEng": "Klin",
+  "lat": 56.3355601,
+  "lon": 36.7351318,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Ковров",
+  "nameEng": "Kovrov",
+  "lat": 56.374603,
+  "lon": 41.311676,
+  "region": "Владимирская область",
+  "regionEng": "Vladimir Region"
+ },
+ {
+  "name": "Коломна",
+  "nameEng": "Kolomna",
+  "lat": 55.0995509,
+  "lon": 38.7811165,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Комсомольск-на-Амуре",
+  "nameEng": "Komsomolsk-on-Amur",
+  "lat": 50.550877,
+  "lon": 137.020782,
+  "region": "Хабаровский край",
+  "regionEng": "Khabarovsk Territory"
+ },
+ {
+  "name": "Копейск",
+  "nameEng": "Kopeysk",
+  "lat": 55.1131951,
+  "lon": 61.6216332,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Королёв",
+  "nameEng": "Korolev",
+  "lat": 55.9204898,
+  "lon": 37.8326289,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Корсаков",
+  "nameEng": "Korsakov",
+  "lat": 46.632815,
+  "lon": 142.7810147,
+  "region": "Сахалинская область",
+  "regionEng": "Sakhalin Region"
+ },
+ {
+  "name": "Кострома",
+  "nameEng": "Kostroma",
+  "lat": 57.7679158,
+  "lon": 40.9269141,
+  "region": "Костромская область",
+  "regionEng": "Kostroma Region"
+ },
+ {
+  "name": "Красногорск",
+  "nameEng": "Krasnogorsk",
+  "lat": 55.8217545,
+  "lon": 37.3400897,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Краснодар",
+  "nameEng": "Krasnodar",
+  "lat": 45.7684014,
+  "lon": 39.0261044,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Краснокаменск",
+  "nameEng": "Krasnokamensk",
+  "lat": 50.096992,
+  "lon": 118.041344,
+  "region": "Забайкальский край",
+  "regionEng": "Trans-Baikal Territory"
+ },
+ {
+  "name": "Краснотурьинск",
+  "nameEng": "Krasnoturyinsk",
+  "lat": 59.76565749899399,
+  "lon": 60.20357254781024,
+  "region": "Свердловская область",
+  "regionEng": "Sverdlovsk Region"
+ },
+ {
+  "name": "Красноярск",
+  "nameEng": "Krasnoyarsk",
+  "lat": 56.0090968,
+  "lon": 92.8725147,
+  "region": "Красноярский край",
+  "regionEng": "Krasnoyarsk Territory"
+ },
+ {
+  "name": "Кулебаки",
+  "nameEng": "Kulebaki",
+  "lat": 55.41572719048769,
+  "lon": 42.525620742081806,
+  "region": "Нижегородская область",
+  "regionEng": "Nizhny Novgorod Region"
+ },
+ {
+  "name": "Кумертау",
+  "nameEng": "Kumertau",
+  "lat": 52.760975,
+  "lon": 55.796482,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Курган",
+  "nameEng": "Kurgan",
+  "lat": 55.45435,
+  "lon": 65.321877,
+  "region": "Курганская область",
+  "regionEng": "Kurgan Region"
+ },
+ {
+  "name": "Курск",
+  "nameEng": "Kursk",
+  "lat": 51.739433,
+  "lon": 36.179604,
+  "region": "Курская область",
+  "regionEng": "Kursk Region"
+ },
+ {
+  "name": "Кызыл",
+  "nameEng": "Kyzyl",
+  "lat": 51.719079,
+  "lon": 94.4300679,
+  "region": "Республика Тыва",
+  "regionEng": "Republic of Tuva"
+ },
+ {
+  "name": "Ленинск-Кузнецкий",
+  "nameEng": "Leninsk-Kuznetsky",
+  "lat": 54.6628861672544,
+  "lon": 86.18041153560283,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Лесосибирск",
+  "nameEng": "Lesosibirsk",
+  "lat": 58.224093054479255,
+  "lon": 92.45819076757307,
+  "region": "Красноярский край",
+  "regionEng": "Krasnoyarsk Territory"
+ },
+ {
+  "name": "Липецк",
+  "nameEng": "Lipetsk",
+  "lat": 52.5856125,
+  "lon": 39.5490115,
+  "region": "Липецкая область",
+  "regionEng": "Lipetsk Region"
+ },
+ {
+  "name": "Лобня",
+  "nameEng": "Lobnya",
+  "lat": 56.0104473,
+  "lon": 37.4670831,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Люберцы",
+  "nameEng": "Lyubertsy",
+  "lat": 55.6783142,
+  "lon": 37.89377,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Магадан",
+  "nameEng": "Magadan",
+  "lat": 59.56115,
+  "lon": 150.83014,
+  "region": "Магаданская область",
+  "regionEng": "Magadan Region"
+ },
+ {
+  "name": "Магас",
+  "nameEng": "Magas",
+  "lat": 43.1666497,
+  "lon": 44.8048191,
+  "region": "Республика Ингушетия",
+  "regionEng": "Republic of Ingushetia"
+ },
+ {
+  "name": "Магнитогорск",
+  "nameEng": "Magnitogorsk",
+  "lat": 53.4242184,
+  "lon": 58.983136,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Майкоп",
+  "nameEng": "Maikop",
+  "lat": 44.6062079,
+  "lon": 40.104053,
+  "region": "Республика Адыгея",
+  "regionEng": "Republic of Adygeya"
+ },
+ {
+  "name": "Махачкала",
+  "nameEng": "Makhachkala",
+  "lat": 42.9830241,
+  "lon": 47.5048717,
+  "region": "Республика Дагестан",
+  "regionEng": "Republic of Daghestan"
+ },
+ {
+  "name": "Междуреченск",
+  "nameEng": "Mezhdurechensk",
+  "lat": 53.69122661293265,
+  "lon": 88.0894236098293,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Миасс",
+  "nameEng": "Miass",
+  "lat": 55.065304,
+  "lon": 60.108337,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Михайловка",
+  "nameEng": "Mikhailovka",
+  "lat": 50.0760866819609,
+  "lon": 43.21815733958497,
+  "region": "Волгоградская область",
+  "regionEng": "Volgograd Region"
+ },
+ {
+  "name": "Михайловск",
+  "nameEng": "Mikhailovsk",
+  "lat": 45.12874,
+  "lon": 42.00923,
+  "region": "Ставропольский край",
+  "regionEng": "Stavropol Territory"
+ },
+ {
+  "name": "Мичуринск",
+  "nameEng": "Michurinsk",
+  "lat": 52.8946613,
+  "lon": 40.5071721,
+  "region": "Тамбовская область",
+  "regionEng": "Tambov Region"
+ },
+ {
+  "name": "Москва",
+  "nameEng": "Moscow",
+  "lat": 55.755864,
+  "lon": 37.617698,
+  "region": "Город Москва",
+  "regionEng": "Moscow"
+ },
+ {
+  "name": "Мурманск",
+  "nameEng": "Murmansk",
+  "lat": 68.970665,
+  "lon": 33.07497,
+  "region": "Мурманская область",
+  "regionEng": "Murmansk Region"
+ },
+ {
+  "name": "Муром",
+  "nameEng": "Murom",
+  "lat": 55.5738,
+  "lon": 42.0447,
+  "region": "Владимирская область",
+  "regionEng": "Vladimir Region"
+ },
+ {
+  "name": "Мытищи",
+  "nameEng": "Mytishchi",
+  "lat": 55.9094928,
+  "lon": 37.7339358,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Назрань",
+  "nameEng": "Nazran",
+  "lat": 43.2320774,
+  "lon": 44.7540128,
+  "region": "Республика Ингушетия",
+  "regionEng": "Republic of Ingushetia"
+ },
+ {
+  "name": "Нальчик",
+  "nameEng": "Nalchik",
+  "lat": 43.4769604,
+  "lon": 43.5966578,
+  "region": "Кабардино-Балкарская Республика",
+  "regionEng": "Kabardino-Balkarian Republic"
+ },
+ {
+  "name": "Нарьян-Мар",
+  "nameEng": "Naryan-Mar",
+  "lat": 67.6380175,
+  "lon": 53.0071044,
+  "region": "Ненецкий автономный округ",
+  "regionEng": "Nenets Autonomous Area"
+ },
+ {
+  "name": "Находка",
+  "nameEng": "Nakhodka",
+  "lat": 42.8246489,
+  "lon": 132.8926,
+  "region": "Приморский край",
+  "regionEng": "Primorye Territory"
+ },
+ {
+  "name": "Невинномысск",
+  "nameEng": "Nevinnomyssk",
+  "lat": 44.6245814,
+  "lon": 41.9475941,
+  "region": "Ставропольский край",
+  "regionEng": "Stavropol Territory"
+ },
+ {
+  "name": "Нерюнгри",
+  "nameEng": "Neryungri",
+  "lat": 56.6579435,
+  "lon": 124.7123042,
+  "region": "Республика Саха (Якутия)",
+  "regionEng": "Republic of Sakha (Yakutia)"
+ },
+ {
+  "name": "Нефтекамск",
+  "nameEng": "Neftekamsk",
+  "lat": 56.0884031,
+  "lon": 54.2478094,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Нефтеюганск",
+  "nameEng": "Nefteyugansk",
+  "lat": 61.090309,
+  "lon": 72.6101,
+  "region": "Ханты-Мансийский автономный округ – Югра",
+  "regionEng": "Khanty-Mansi Autonomous Area - Yugra"
+ },
+ {
+  "name": "Нижневартовск",
+  "nameEng": "Nizhnevartovsk",
+  "lat": 60.9339411,
+  "lon": 76.5814274,
+  "region": "Ханты-Мансийский автономный округ – Югра",
+  "regionEng": "Khanty-Mansi Autonomous Area - Yugra"
+ },
+ {
+  "name": "Нижнекамск",
+  "nameEng": "Nizhnekamsk",
+  "lat": 55.6412879,
+  "lon": 51.8160376,
+  "region": "Республика Татарстан",
+  "regionEng": "Republic of Tatarstan"
+ },
+ {
+  "name": "Нижнеудинск",
+  "nameEng": "Nizhneudinsk",
+  "lat": 54.901238,
+  "lon": 99.026387,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Новоалтайск",
+  "nameEng": "Novoaltaysk",
+  "lat": 53.393341,
+  "lon": 83.939407,
+  "region": "Алтайский край",
+  "regionEng": "Altai Territory"
+ },
+ {
+  "name": "Новокузнецк",
+  "nameEng": "Novokuznetsk",
+  "lat": 53.7575903,
+  "lon": 87.1358494,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Новокуйбышевск",
+  "nameEng": "Novokuibyshevsk",
+  "lat": 53.099243,
+  "lon": 49.948364,
+  "region": "Самарская область",
+  "regionEng": "Samara Region"
+ },
+ {
+  "name": "Новомосковск",
+  "nameEng": "Novomoskovsk",
+  "lat": 54.0109,
+  "lon": 38.29631,
+  "region": "Тульская область",
+  "regionEng": "Tula Region"
+ },
+ {
+  "name": "Новороссийск",
+  "nameEng": "Novorossiysk",
+  "lat": 44.7239578,
+  "lon": 37.7690711,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Новосибирск",
+  "nameEng": "Novosibirsk",
+  "lat": 55.0288307,
+  "lon": 82.9226887,
+  "region": "Новосибирская область",
+  "regionEng": "Novosibirsk Region"
+ },
+ {
+  "name": "Новочебоксарск",
+  "nameEng": "Novocheboksarsk",
+  "lat": 56.1140023,
+  "lon": 47.4870341,
+  "region": "Чувашская Республика",
+  "regionEng": "Chuvash Republic"
+ },
+ {
+  "name": "Новочеркасск",
+  "nameEng": "Novocherkassk",
+  "lat": 47.41066,
+  "lon": 40.101986,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Новошахтинск",
+  "nameEng": "Novoshakhtinsk",
+  "lat": 47.7558886,
+  "lon": 39.935987,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Ногинск",
+  "nameEng": "Noginsk",
+  "lat": 55.8553511,
+  "lon": 38.4411898,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Норильск",
+  "nameEng": "Norilsk",
+  "lat": 69.3498394,
+  "lon": 88.200517,
+  "region": "Красноярский край",
+  "regionEng": "Krasnoyarsk Territory"
+ },
+ {
+  "name": "Ноябрьск",
+  "nameEng": "Noyabrsk",
+  "lat": 63.2002917,
+  "lon": 75.4475807,
+  "region": "Ямало-Ненецкий автономный округ",
+  "regionEng": "Yamal-Nenets Autonomous Area"
+ },
+ {
+  "name": "Обнинск",
+  "nameEng": "Obninsk",
+  "lat": 55.0951738,
+  "lon": 36.611913,
+  "region": "Калужская область",
+  "regionEng": "Kaluga Region"
+ },
+ {
+  "name": "Одинцово",
+  "nameEng": "Odintsovo",
+  "lat": 55.6711507,
+  "lon": 37.2727963,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Октябрьский",
+  "nameEng": "Oktyabrsky",
+  "lat": 54.4809722,
+  "lon": 53.4660062,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Омск",
+  "nameEng": "Omsk",
+  "lat": 54.991375,
+  "lon": 73.371529,
+  "region": "Омская область",
+  "regionEng": "Omsk Region"
+ },
+ {
+  "name": "Орёл",
+  "nameEng": "Oryol",
+  "lat": 52.9687747,
+  "lon": 36.0694937,
+  "region": "Орловская область",
+  "regionEng": "Orel Region"
+ },
+ {
+  "name": "Оренбург",
+  "nameEng": "Orenburg",
+  "lat": 51.7671248,
+  "lon": 55.0978517,
+  "region": "Оренбургская область",
+  "regionEng": "Orenburg Region"
+ },
+ {
+  "name": "Орехово-Зуево",
+  "nameEng": "Orekhovo-Zuyevo",
+  "lat": 55.8083278,
+  "lon": 38.9790038,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Орск",
+  "nameEng": "Orsk",
+  "lat": 51.0736434,
+  "lon": 58.5985748,
+  "region": "Оренбургская область",
+  "regionEng": "Orenburg Region"
+ },
+ {
+  "name": "Павловск",
+  "nameEng": "Pavlovsk",
+  "lat": 50.4520214,
+  "lon": 40.1399663,
+  "region": "Воронежская область",
+  "regionEng": "Voronezh Region"
+ },
+ {
+  "name": "Певек",
+  "nameEng": "Pevek",
+  "lat": 69.66858655542202,
+  "lon": 170.31324539150322,
+  "region": "Чукотский автономный округ",
+  "regionEng": "Chukotka Autonomous Area"
+ },
+ {
+  "name": "Пенза",
+  "nameEng": "Penza",
+  "lat": 53.200001,
+  "lon": 45.0,
+  "region": "Пензенская область",
+  "regionEng": "Penza Region"
+ },
+ {
+  "name": "Первоуральск",
+  "nameEng": "Pervouralsk",
+  "lat": 56.9051246,
+  "lon": 59.9431941,
+  "region": "Свердловская область",
+  "regionEng": "Sverdlovsk Region"
+ },
+ {
+  "name": "Пермь",
+  "nameEng": "Perm",
+  "lat": 58.014965,
+  "lon": 56.246723,
+  "region": "Пермский край",
+  "regionEng": "Perm Territory"
+ },
+ {
+  "name": "Петрозаводск",
+  "nameEng": "Petrozavodsk",
+  "lat": 61.7900426,
+  "lon": 34.390007,
+  "region": "Республика Карелия",
+  "regionEng": "Republic of Karelia"
+ },
+ {
+  "name": "Петропавловск-Камчатский",
+  "nameEng": "Petropavlovsk-Kamchatsky",
+  "lat": 53.0199838,
+  "lon": 158.6471356,
+  "region": "Камчатский край",
+  "regionEng": "Kamchatka Territory"
+ },
+ {
+  "name": "Подольск",
+  "nameEng": "Podolsk",
+  "lat": 55.4308841,
+  "lon": 37.5453056,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Прокопьевск",
+  "nameEng": "Prokopyevsk",
+  "lat": 53.890972,
+  "lon": 86.737663,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Псков",
+  "nameEng": "Pskov",
+  "lat": 57.8173923,
+  "lon": 28.3343465,
+  "region": "Псковская область",
+  "regionEng": "Pskov Region"
+ },
+ {
+  "name": "Пушкино",
+  "nameEng": "Pushkino",
+  "lat": 55.98783,
+  "lon": 37.84118,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Пятигорск",
+  "nameEng": "Pyatigorsk",
+  "lat": 44.039775,
+  "lon": 43.0706669,
+  "region": "Ставропольский край",
+  "regionEng": "Stavropol Territory"
+ },
+ {
+  "name": "Раменское",
+  "nameEng": "Ramenskoe",
+  "lat": 55.5709361,
+  "lon": 38.2282099,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Реутов",
+  "nameEng": "Reutov",
+  "lat": 55.7622453,
+  "lon": 37.856555,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Ростов-на-Дону",
+  "nameEng": "Rostov-on-Don",
+  "lat": 47.2216548,
+  "lon": 39.7096061,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Рубцовск",
+  "nameEng": "Rubtsovsk",
+  "lat": 51.5276264,
+  "lon": 81.2176174,
+  "region": "Алтайский край",
+  "regionEng": "Altai Territory"
+ },
+ {
+  "name": "Рыбинск",
+  "nameEng": "Rybinsk",
+  "lat": 58.050373,
+  "lon": 38.834637,
+  "region": "Ярославская область",
+  "regionEng": "Yaroslavl Region"
+ },
+ {
+  "name": "Рязань",
+  "nameEng": "Ryazan",
+  "lat": 54.6295687,
+  "lon": 39.7425039,
+  "region": "Рязанская область",
+  "regionEng": "Ryazan Region"
+ },
+ {
+  "name": "Салават",
+  "nameEng": "Salavat",
+  "lat": 53.361687,
+  "lon": 55.924641,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Салехард",
+  "nameEng": "Salekhard",
+  "lat": 66.53333,
+  "lon": 66.6,
+  "region": "Ямало-Ненецкий автономный округ",
+  "regionEng": "Yamal-Nenets Autonomous Area"
+ },
+ {
+  "name": "Самара",
+  "nameEng": "Samara",
+  "lat": 53.20278,
+  "lon": 50.14083,
+  "region": "Самарская область",
+  "regionEng": "Samara Region"
+ },
+ {
+  "name": "Саранск",
+  "nameEng": "Saransk",
+  "lat": 54.20005,
+  "lon": 45.17451,
+  "region": "Республика Мордовия",
+  "regionEng": "Republic of Mordovia"
+ },
+ {
+  "name": "Сарапул",
+  "nameEng": "Sarapul",
+  "lat": 56.46667,
+  "lon": 53.8,
+  "region": "Удмуртская Республика",
+  "regionEng": "Udmurtian Republic"
+ },
+ {
+  "name": "Саратов",
+  "nameEng": "Saratov",
+  "lat": 51.53333,
+  "lon": 46.01667,
+  "region": "Саратовская область",
+  "regionEng": "Saratov Region"
+ },
+ {
+  "name": "Сатка",
+  "nameEng": "Satka",
+  "lat": 55.048510550045215,
+  "lon": 58.99739085383786,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Саяногорск",
+  "nameEng": "Sayanogorsk",
+  "lat": 53.100762,
+  "lon": 91.412204,
+  "region": "Республика Хакасия",
+  "regionEng": "Republic of Khakassia"
+ },
+ {
+  "name": "Саянск",
+  "nameEng": "Sayansk",
+  "lat": 54.11081,
+  "lon": 102.180139,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Светлогорск",
+  "nameEng": "Svetlogorsk",
+  "lat": 54.93525045737952,
+  "lon": 20.154233551509314,
+  "region": "Калининградская область",
+  "regionEng": "Kaliningrad Region"
+ },
+ {
+  "name": "Свободный",
+  "nameEng": "Svobodny",
+  "lat": 51.377354,
+  "lon": 128.13475,
+  "region": "Амурская область",
+  "regionEng": "Amur Region"
+ },
+ {
+  "name": "Севастополь",
+  "nameEng": "Sevastopol",
+  "lat": 44.61665,
+  "lon": 33.52537,
+  "region": "Город Севастополь",
+  "regionEng": "Sevastopol"
+ },
+ {
+  "name": "Северобайкальск",
+  "nameEng": "Severobaikalsk",
+  "lat": 55.635967,
+  "lon": 109.335648,
+  "region": "Республика Бурятия",
+  "regionEng": "Republic of Buryatia"
+ },
+ {
+  "name": "Северодвинск",
+  "nameEng": "Severodvinsk",
+  "lat": 64.56667,
+  "lon": 39.86667,
+  "region": "Архангельская область",
+  "regionEng": "Arkhangelsk Region"
+ },
+ {
+  "name": "Североуральск",
+  "nameEng": "Severouralsk",
+  "lat": 60.152394,
+  "lon": 59.952161,
+  "region": "Свердловская область",
+  "regionEng": "Sverdlovsk Region"
+ },
+ {
+  "name": "Северск",
+  "nameEng": "Seversk",
+  "lat": 56.590970733173066,
+  "lon": 84.89477600785854,
+  "region": "Томская область",
+  "regionEng": "Tomsk Region"
+ },
+ {
+  "name": "Серпухов",
+  "nameEng": "Serpukhov",
+  "lat": 54.91796,
+  "lon": 37.423,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Симферополь",
+  "nameEng": "Simferopol",
+  "lat": 44.95212,
+  "lon": 34.10242,
+  "region": "Республика Крым",
+  "regionEng": "Republic of Crimea"
+ },
+ {
+  "name": "Смоленск",
+  "nameEng": "Smolensk",
+  "lat": 54.79031,
+  "lon": 32.05037,
+  "region": "Смоленская область",
+  "regionEng": "Smolensk Region"
+ },
+ {
+  "name": "Сорск",
+  "nameEng": "Sorsk",
+  "lat": 54.002611,
+  "lon": 90.253332,
+  "region": "Республика Хакасия",
+  "regionEng": "Republic of Khakassia"
+ },
+ {
+  "name": "Сочи",
+  "nameEng": "Sochi",
+  "lat": 43.58528,
+  "lon": 39.72028,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Ставрополь",
+  "nameEng": "Stavropol",
+  "lat": 45.05,
+  "lon": 41.98333,
+  "region": "Ставропольский край",
+  "regionEng": "Stavropol Territory"
+ },
+ {
+  "name": "Стерлитамак",
+  "nameEng": "Sterlitamak",
+  "lat": 53.63333,
+  "lon": 55.95,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Суздаль",
+  "nameEng": "Suzdal",
+  "lat": 56.42774163667772,
+  "lon": 40.44844114972198,
+  "region": "Владимирская область",
+  "regionEng": "Vladimir Region"
+ },
+ {
+  "name": "Сургут",
+  "nameEng": "Surgut",
+  "lat": 61.25595,
+  "lon": 73.38455,
+  "region": "Ханты-Мансийский автономный округ – Югра",
+  "regionEng": "Khanty-Mansi Autonomous Area - Yugra"
+ },
+ {
+  "name": "Сызрань",
+  "nameEng": "Syzran",
+  "lat": 53.15045,
+  "lon": 48.3979,
+  "region": "Самарская область",
+  "regionEng": "Samara Region"
+ },
+ {
+  "name": "Сыктывкар",
+  "nameEng": "Syktyvkar",
+  "lat": 56.3153529,
+  "lon": 38.1358208,
+  "region": "Республика Коми",
+  "regionEng": "Komi Republic"
+ },
+ {
+  "name": "Таганрог",
+  "nameEng": "Taganrog",
+  "lat": 47.2153657,
+  "lon": 38.9285216,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Тайшет",
+  "nameEng": "Tayshet",
+  "lat": 55.940502,
+  "lon": 98.002982,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Тамбов",
+  "nameEng": "Tambov",
+  "lat": 52.72879,
+  "lon": 41.45536,
+  "region": "Тамбовская область",
+  "regionEng": "Tambov Region"
+ },
+ {
+  "name": "Тверь",
+  "nameEng": "Tver",
+  "lat": 56.858675,
+  "lon": 35.9208284,
+  "region": "Тверская область",
+  "regionEng": "Tver Region"
+ },
+ {
+  "name": "Тобольск",
+  "nameEng": "Tobolsk",
+  "lat": 58.2107108,
+  "lon": 68.3696104,
+  "region": "Тюменская область",
+  "regionEng": "Tyumen Region"
+ },
+ {
+  "name": "Тольятти",
+  "nameEng": "Togliatti",
+  "lat": 53.5149884,
+  "lon": 49.4073316,
+  "region": "Самарская область",
+  "regionEng": "Samara Region"
+ },
+ {
+  "name": "Томск",
+  "nameEng": "Tomsk",
+  "lat": 56.4884594,
+  "lon": 84.9527189,
+  "region": "Томская область",
+  "regionEng": "Tomsk Region"
+ },
+ {
+  "name": "Тула",
+  "nameEng": "Tula",
+  "lat": 54.1930321,
+  "lon": 37.61754,
+  "region": "Тульская область",
+  "regionEng": "Tula Region"
+ },
+ {
+  "name": "Тулун",
+  "nameEng": "Tulun",
+  "lat": 54.55712,
+  "lon": 100.578047,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Тутаев",
+  "nameEng": "Tutaev",
+  "lat": 57.875385,
+  "lon": 39.527214,
+  "region": "Ярославская область",
+  "regionEng": "Yaroslavl Region"
+ },
+ {
+  "name": "Тында",
+  "nameEng": "Tynda",
+  "lat": 55.149694,
+  "lon": 124.7375884,
+  "region": "Амурская область",
+  "regionEng": "Amur Region"
+ },
+ {
+  "name": "Тюмень",
+  "nameEng": "Tyumen",
+  "lat": 57.153534,
+  "lon": 65.542274,
+  "region": "Тюменская область",
+  "regionEng": "Tyumen Region"
+ },
+ {
+  "name": "Улан-Удэ",
+  "nameEng": "Ulan-Ude",
+  "lat": 51.8357841,
+  "lon": 107.5839105,
+  "region": "Республика Бурятия",
+  "regionEng": "Republic of Buryatia"
+ },
+ {
+  "name": "Ульяновск",
+  "nameEng": "Ulyanovsk",
+  "lat": 54.3107593,
+  "lon": 48.3642771,
+  "region": "Ульяновская область",
+  "regionEng": "Ulyanovsk Region"
+ },
+ {
+  "name": "Усолье-Сибирское",
+  "nameEng": "Usolye-Sibirskoe",
+  "lat": 52.7512013,
+  "lon": 103.6621625,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Уссурийск",
+  "nameEng": "Ussuriysk",
+  "lat": 43.7972447,
+  "lon": 131.9520752,
+  "region": "Приморский край",
+  "regionEng": "Primorye Territory"
+ },
+ {
+  "name": "Усть-Илимск",
+  "nameEng": "Ust-Ilimsk",
+  "lat": 57.991365145319996,
+  "lon": 102.69965854434369,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Усть-Катав",
+  "nameEng": "Ust-Katav",
+  "lat": 54.9307169,
+  "lon": 58.1743686,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Усть-Лабинск",
+  "nameEng": "Ust-Labinsk",
+  "lat": 45.213657,
+  "lon": 39.691225,
+  "region": "Краснодарский край",
+  "regionEng": "Krasnodar Territory"
+ },
+ {
+  "name": "Уфа",
+  "nameEng": "Ufa",
+  "lat": 54.7261409,
+  "lon": 55.947499,
+  "region": "Республика Башкортостан",
+  "regionEng": "Republic of Bashkortostan"
+ },
+ {
+  "name": "Ухта",
+  "nameEng": "Ukhta",
+  "lat": 63.5623797,
+  "lon": 53.6842376,
+  "region": "Республика Коми",
+  "regionEng": "Komi Republic"
+ },
+ {
+  "name": "Хабаровск",
+  "nameEng": "Khabarovsk",
+  "lat": 48.4812568,
+  "lon": 135.0762968,
+  "region": "Хабаровский край",
+  "regionEng": "Khabarovsk Territory"
+ },
+ {
+  "name": "Ханты-Мансийск",
+  "nameEng": "Khanty-Mansiysk",
+  "lat": 61.0034448,
+  "lon": 69.0190006,
+  "region": "Ханты-Мансийский автономный округ – Югра",
+  "regionEng": "Khanty-Mansi Autonomous Area - Yugra"
+ },
+ {
+  "name": "Хасавюрт",
+  "nameEng": "Khasavyurt",
+  "lat": 43.246916,
+  "lon": 46.5855184,
+  "region": "Республика Дагестан",
+  "regionEng": "Republic of Daghestan"
+ },
+ {
+  "name": "Химки",
+  "nameEng": "Khimki",
+  "lat": 55.8917293,
+  "lon": 37.4396994,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Чапаевск",
+  "nameEng": "Chapaevsk",
+  "lat": 52.94418868000653,
+  "lon": 49.78650589321637,
+  "region": "Самарская область",
+  "regionEng": "Samara Region"
+ },
+ {
+  "name": "Чебоксары",
+  "nameEng": "Cheboksary",
+  "lat": 56.1307195,
+  "lon": 47.2449597,
+  "region": "Чувашская Республика",
+  "regionEng": "Chuvash Republic"
+ },
+ {
+  "name": "Челябинск",
+  "nameEng": "Chelyabinsk",
+  "lat": 55.1598408,
+  "lon": 61.4025547,
+  "region": "Челябинская область",
+  "regionEng": "Chelyabinsk Region"
+ },
+ {
+  "name": "Черемхово",
+  "nameEng": "Cheremkhovo",
+  "lat": 53.137327,
+  "lon": 103.089377,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Череповец",
+  "nameEng": "Cherepovets",
+  "lat": 59.128696,
+  "lon": 37.916389,
+  "region": "Вологодская область",
+  "regionEng": "Vologda Region"
+ },
+ {
+  "name": "Черкесск",
+  "nameEng": "Cherkessk",
+  "lat": 44.2285229,
+  "lon": 42.048257,
+  "region": "Карачаево-Черкесская Республика",
+  "regionEng": "Karachayevo-Circassian Republic"
+ },
+ {
+  "name": "Черноголовка",
+  "nameEng": "Chernogolovka",
+  "lat": 56.0061165,
+  "lon": 38.3835224,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Черногорск",
+  "nameEng": "Chernogorsk",
+  "lat": 53.828236,
+  "lon": 91.31321,
+  "region": "Республика Хакасия",
+  "regionEng": "Republic of Khakassia"
+ },
+ {
+  "name": "Чехов",
+  "nameEng": "Chekhov",
+  "lat": 55.1426603,
+  "lon": 37.4545328,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Чита",
+  "nameEng": "Chita",
+  "lat": 52.033409,
+  "lon": 113.500893,
+  "region": "Забайкальский край",
+  "regionEng": "Trans-Baikal Territory"
+ },
+ {
+  "name": "Чусовой",
+  "nameEng": "Chusovoy",
+  "lat": 58.29045556378334,
+  "lon": 57.81707916423375,
+  "region": "Пермский край",
+  "regionEng": "Perm Territory"
+ },
+ {
+  "name": "Шахты",
+  "nameEng": "Shakhty",
+  "lat": 47.7119167,
+  "lon": 40.2115699,
+  "region": "Ростовская область",
+  "regionEng": "Rostov Region"
+ },
+ {
+  "name": "Шелехов",
+  "nameEng": "Shelekhov",
+  "lat": 52.20544110129504,
+  "lon": 104.09767920096964,
+  "region": "Иркутская область",
+  "regionEng": "Irkutsk Region"
+ },
+ {
+  "name": "Щёлково",
+  "nameEng": "Shchelkovo",
+  "lat": 55.9206499,
+  "lon": 37.9915576,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Электросталь",
+  "nameEng": "Elektrostal",
+  "lat": 55.7903785,
+  "lon": 38.4405711,
+  "region": "Московская область",
+  "regionEng": "Moscow Region"
+ },
+ {
+  "name": "Элиста",
+  "nameEng": "Elista",
+  "lat": 46.306999,
+  "lon": 44.270187,
+  "region": "Республика Калмыкия",
+  "regionEng": "Republic of Kalmykia"
+ },
+ {
+  "name": "Энгельс",
+  "nameEng": "Engels",
+  "lat": 51.5013775,
+  "lon": 46.1233093,
+  "region": "Саратовская область",
+  "regionEng": "Saratov Region"
+ },
+ {
+  "name": "Южно-Сахалинск",
+  "nameEng": "Yuzhno-Sakhalinsk",
+  "lat": 46.9574273,
+  "lon": 142.727438,
+  "region": "Сахалинская область",
+  "regionEng": "Sakhalin Region"
+ },
+ {
+  "name": "Юрга",
+  "nameEng": "Yurga",
+  "lat": 55.71418692687902,
+  "lon": 84.89901438865218,
+  "region": "Кемеровская область",
+  "regionEng": "Kemerovo Region"
+ },
+ {
+  "name": "Якутск",
+  "nameEng": "Yakutsk",
+  "lat": 62.0274078,
+  "lon": 129.7319787,
+  "region": "Республика Саха (Якутия)",
+  "regionEng": "Republic of Sakha (Yakutia)"
+ },
+ {
+  "name": "Ялта",
+  "nameEng": "Yalta",
+  "lat": 44.4970713,
+  "lon": 34.1586871,
+  "region": "Республика Крым",
+  "regionEng": "Republic of Crimea"
+ },
+ {
+  "name": "Ярославль",
+  "nameEng": "Yaroslavl",
+  "lat": 57.6508432,
+  "lon": 39.8718634,
+  "region": "Ярославская область",
+  "regionEng": "Yaroslavl Region"
+ }
+]

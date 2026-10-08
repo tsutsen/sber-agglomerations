@@ -1,0 +1,10 @@
+space,partition,metric,obs,null_mean,null_best,p
+features(14),typology,SW,0.094,-0.048,-0.03,0.0
+features(14),typology,CH,216.194,0.971,1.354,0.0
+features(14),typology,S_Dbw,1.998,26.751,21.558,0.0
+network(prod),production,AVI (isolability),0.291,0.001,0.002,0.0
+network(prod),production,AVU (unifiability),0.0,0.001,0.001,0.0
+network(prod),production,ANUI,0.291,0.001,0.002,0.0
+network(cos14),typology,AVI (isolability),0.228,0.071,0.071,0.0
+network(cos14),typology,AVU (unifiability),0.059,0.071,0.071,0.0
+network(cos14),typology,ANUI,0.225,0.071,0.071,0.0
