@@ -23,8 +23,8 @@ const CLGEO = { type: 'FeatureCollection',
 const GREY = '#cfd4dc', EDGE = '#344054';
 
 // категории стр. 2: 0 — «цены хорошие» (>115), 1 — «нормальные» (85–115), 2 — «высокие» (<85)
-const CATC = ['#6E75D0', '#31C896', '#E84A4A'];
-const CAT_EDGE = ['#4A51A6', '#22916E', '#B23434'];
+const CATC = ['#A48DF5', '#17D061', '#E83636'];
+const CAT_EDGE = ['#8368E0', '#10A94B', '#C22B2B'];
 const CATN = ['Цены хорошие', 'Цены нормальные', 'Цены высокие'];
 const catOf = v => v > 115 ? 0 : v >= 85 ? 1 : 2;
 

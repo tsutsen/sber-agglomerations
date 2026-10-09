@@ -1,8 +1,8 @@
 /* page1.js — «Официальные vs рыночные»: два слоя (базовая заливка кластеров + МО)
    и оверлей официальных агломераций. */
 
-const TYPE_COLOR = { match: '#6E75D0', merge: '#DD8FB7', new: '#E84A4A', small: '#D9D9D9' };
-const TYPE_EDGE = { match: '#4A51A6', merge: '#A86285', new: '#B23434', small: '#A6A6A6' };
+const TYPE_COLOR = { match: '#A48DF5', merge: '#6139E7', new: '#FF6B3D', small: '#D9D9D9' };
+const TYPE_EDGE = { match: '#8368E0', merge: '#4A25C9', new: '#E04E1F', small: '#A6A6A6' };
 const TYPE_RU = { match: 'Похожи на официальные агломерации, пересекаются с ними', merge: 'Объединяют сразу несколько официальных агломераций', new: 'Новые рыночные аггломерации, не пересекаются с официальными', small: 'Малые (1–2 МО)' };
 const FKEY = { match: 'f_match', merge: 'f_merge', new: 'f_new', small: 'f_small' };
 

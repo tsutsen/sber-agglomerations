@@ -281,3 +281,11 @@ assert '/*__JS__*/' not in tpl_w and '/*__DATA__*/' not in tpl_w
 (SITE / 'index.html').write_text(tpl_w, encoding='utf-8')
 tot = sum((SITE / f).stat().st_size for f in ('index.html', 'app.js', 'data.json', 'geo.topojson'))
 print(f'web: official={len(off_w["features"])} clgs={len(clgs_w)} site total {tot / 1e6:.1f} MB raw')
+
+# ---------- синхронизация archipelagos/map/ (лендинг ссылается на map/) ----------
+import shutil
+APM = VIZ / 'archipelagos' / 'map'
+if APM.exists():
+    for f in ('index.html', 'app.js', 'data.json', 'geo.topojson'):
+        shutil.copy2(SITE / f, APM / f)
+    print('sync: archipelagos/map/ = site/')

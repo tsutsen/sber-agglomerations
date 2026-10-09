@@ -1,12 +1,12 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Рыночные агломерации</title>
+<title>Карта архипелагов трат</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css'">
 <link rel="stylesheet" href="style.css"> <!-- пик-линк: удалится при сборке -->
 <style>/*__CSS__*/</style>
 </head><body>
 
-<nav><b>🗺 Рыночные агломерации</b>
+<nav><a class="back" href="../">← лендинг</a><b>Карта архипелагов трат</b>
 <button data-p="1" class="on">1 · Агломерации</button><button data-p="2">2 · Цены и зарплаты</button><button data-p="3">3 · Методология</button></nav>
 
 <!-- ============================= 1 · Официальные vs рыночные ============================= -->
@@ -16,9 +16,9 @@
 <p class="lead">Министерства выделяют официальные агломерации политически — в том числе «из удобства»: чтобы было понятно, куда и как направлять бюджеты. Но рынок не знает про административные границы: похожие люди живут по разные стороны. Чтобы найти «похожих», посмотрели, сколько они тратят и на что — по данным Сбера о платежах по категориям. Соединили муниципалитеты, связанные дорогами в пределах 50 км, и сгруппировали похожие по профилю расходов в <b>рыночные кластеры</b>.</p>
 <div class="stats"><div class="stat"><b>2144</b><span>муниципальных образования в выборке</span></div><div class="stat"><b>52</b><span>официальных агломераций</span></div><div class="stat"><b>134</b><span>рыночных кластера с более чем тремя МО</span></div></div>
 <div class="group"><div class="group-h"><span>Рыночные кластеры</span><span class="acts"><button type="button" id="p1_on">всё</button><button type="button" id="p1_off">ничего</button></span></div>
-<label class="row"><input type="checkbox" id="f_match" checked><span class="sw" style="--c:#6E75D0"></span><span class="txt"><b>Похожи на официальные агломерации</b><small>пересекаются частично или полностью с агломерацией</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_merge" checked><span class="sw" style="--c:#DD8FB7"></span><span class="txt"><b>Объединяют несколько официальных агломераций</b><small>пересекаются с 2+ агломерациями</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_new" checked><span class="sw" style="--c:#E84A4A"></span><span class="txt"><b>Новые рыночные агломерации</b><small>не пересекаются с официальными агломерациями</small></span><span class="cnt"></span></label>
+<label class="row"><input type="checkbox" id="f_match" checked><span class="sw" style="--c:#A48DF5"></span><span class="txt"><b>Похожи на официальные агломерации</b><small>пересекаются частично или полностью с агломерацией</small></span><span class="cnt"></span></label>
+<label class="row"><input type="checkbox" id="f_merge" checked><span class="sw" style="--c:#6139E7"></span><span class="txt"><b>Объединяют несколько официальных агломераций</b><small>пересекаются с 2+ агломерациями</small></span><span class="cnt"></span></label>
+<label class="row"><input type="checkbox" id="f_new" checked><span class="sw" style="--c:#FF6B3D"></span><span class="txt"><b>Новые рыночные агломерации</b><small>не пересекаются с официальными агломерациями</small></span><span class="cnt"></span></label>
 
 <div class="group"><div class="group-h"><span>Официальные агломерации</span></div>
 <label class="row"><input type="checkbox" id="f_off" checked><span class="sw dash" style="--c:#D3C52B"></span><span class="txt"><b>Официальный перечень</b><small>Агломерации и городские округа, 52 позиции</small></span><span class="cnt"></span></label></div>
@@ -37,9 +37,9 @@
 <p class="lead"><b>Что делать с рыночными агломерациями?</b> Для региональных и муниципальных властей это подсказка, с какими соседними территориями логично взаимодействовать в социально-экономических проектах. Для бизнеса, особенно розничного банка, подключив к ценам зарплаты, видно, куда вкладывать сервисы, которые делают жизнь дешевле — акции и рассрочки. Они особенно нужны там, где цены на товары высокие, а зарплаты низкие — на карте это красная категория.</p>
 <div class="stats"><div class="stat"><b>2144</b><span>муниципальных образования в выборке</span></div><div class="stat"><b>134</b><span>рыночных кластера с более чем тремя МО</span></div><div class="stat"><b>55%</b><span>кластеров с низкой покупательной способностью</span></div></div>
 <div class="group"><div class="group-h"><span>Категории</span><span class="acts"><button type="button" id="p2_on">все</button><button type="button" id="p2_off">ничего</button></span></div>
-<label class="row"><input type="checkbox" id="f_cat2" checked><span class="sw" style="--c:#E84A4A"></span><span class="txt"><b>Цены высокие</b><small>цены высокие относительно зарплаты</small></span><span class="cnt"></span></label></div>
-<label class="row"><input type="checkbox" id="f_cat1" checked><span class="sw" style="--c:#31C896"></span><span class="txt"><b>Цены нормальные</b><small>на зарплату товаров можно купить столько же как в среднем по стране</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_cat0" checked><span class="sw" style="--c:#6E75D0"></span><span class="txt"><b>Цены хорошие</b><small>типичная зарплата в регионе покупает заметно больше товаров</small></span><span class="cnt"></span></label>
+<label class="row"><input type="checkbox" id="f_cat2" checked><span class="sw" style="--c:#E83636"></span><span class="txt"><b>Цены высокие</b><small>цены высокие относительно зарплаты</small></span><span class="cnt"></span></label></div>
+<label class="row"><input type="checkbox" id="f_cat1" checked><span class="sw" style="--c:#17D061"></span><span class="txt"><b>Цены нормальные</b><small>на зарплату товаров можно купить столько же как в среднем по стране</small></span><span class="cnt"></span></label>
+<label class="row"><input type="checkbox" id="f_cat0" checked><span class="sw" style="--c:#A48DF5"></span><span class="txt"><b>Цены хорошие</b><small>типичная зарплата в регионе покупает заметно больше товаров</small></span><span class="cnt"></span></label>
 <div class="group"><div class="group-h"><span>Карта</span></div>
 <label class="row"><input type="checkbox" id="f_reg2" checked><span class="sw" style="--c:#c3c9d2"></span><span class="txt"><b>Регионы</b><small>подложка: границы субъектов РФ 2023</small></span><span class="cnt"></span></label>
 <label class="row"><input type="checkbox" id="f_out2" checked><span class="sw out"></span><span class="txt"><b>МО вне выборки</b><small>по этим МО у нас не хватает данных</small></span><span class="cnt"></span></label>
@@ -101,9 +101,9 @@
 <p class="fn">* Контроль — 100 случайных перемешиваний МО при тех же размерах кластеров (Louvain не участвует): финал значимо выше контроля по всем строкам (p &lt; 0.001). <b>Д</b> — вариант «только дороги» (8 ближайших соседей по расстоянию), <b>Т</b> — вариант «только траты» (граф профилей без дорог). ARI и Purity — против официального перечня: ARI по всем МО официальных агломераций (диапазон — недетерминизм Louvain, 872–874 кластера), Purity — по плотным кластерам (3+ МО). SW, CH, S<sub>Dbw</sub> — внутренние индексы типологии 14 экономических типов (профильное пространство; для Д и Т неприменимы), они — критерий оценки, а не цель оптимизации: пайплайн тюнился по purity/ARI на внешнем референсе. AVI — доля веса кластера, уходящая внутрь него (графовая метрика).</p>
 
 <h2>Ограничения</h2>
-<div class="warn"><b>Радиус 50 км подобран на официальном перечне</b> — доступном эталонном наборе данных. 50 км — оптимум по соответствию официальному перечню: по чистоте, количеству и размеру кластеров (30 км → 86 кластеров, чистота 0.997; 75 км → 71, чистота 0.713).</div>
+<div class="warn"><b>Радиус 50 км подобран на официальном перечне агломераций</b> — доступном эталонном наборе данных. 50 км — оптимум по соответствию официальному перечню: по чистоте, количеству и размеру кластеров (30 км → 86 кластеров, чистота 0.997; 75 км → 71, чистота 0.713).</div>
 <ul>
-<li><b>Восточные МО слишком большие.</b> Восточнее ~60° восточной долготы 67% МО не имеют соседей в пределах 50 км (медианное расстояние 73 км против 45 км на западе) — метод не видит там агломерации. Необходимо более тонкое районирование.</li>
+<li>Восточные МО слишком большие. Восточнее ~60° восточной долготы 67% МО не имеют соседей в пределах 50 км (медианное расстояние 73 км против 45 км на западе) — метод не видит там агломерации. Необходимо более тонкое районирование.</li>
 <li>Рёбра — прокси потоков (дороги + сходство трат); матриц потоков «кто куда ездит» (OD) у нас нет. Индекс мобильности Сбера использован только для валидации, не как признак.</li>
 <li>Цены региональные — внутри региона кластеры не различаются по цене.</li>
 <li>Зарплаты — средние, не медианные; агрегаты не взвешены по населению.</li>

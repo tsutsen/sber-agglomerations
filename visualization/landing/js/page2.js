@@ -1,6 +1,6 @@
 /* page2.js — «Цены и зарплаты»: рыночные кластеры в трёх категориях по цене с учётом зарплаты. */
 
-let L2, L2c, byId2c = {}, L2reg, hov2 = null;
+let L2, L2c, byId2c = {}, L2reg, hov2 = null, hovCat2 = null;
 
 // включён ли кластер: по категории + одиночные/парные (f_dense)
 const catOn = id => {
@@ -13,13 +13,13 @@ const catOn = id => {
 const st2c = f => {
   const c = CL[f.id];
   if (!c || !catOn(f.id)) return { fillColor: '#fff', fillOpacity: 0, weight: 0, opacity: 0, color: EDGE };
-  const hot = hov2 === f.id, t = catOf(c.fr);
-  return { fillColor: CATC[t], fillOpacity: hot ? 1 : .8, color: CAT_EDGE[t], weight: hot ? 3 : 1, opacity: hot ? 1 : .7 };
+  const hot = hov2 === f.id, t = catOf(c.fr), dim = hovCat2 !== null && hovCat2 !== t;
+  return { fillColor: CATC[t], fillOpacity: hot ? 1 : dim ? .1 : .8, color: CAT_EDGE[t], weight: hot ? 3 : 1, opacity: hot ? 1 : dim ? .08 : .7 };
 };
 const st2 = f => {
   const m = MO[f.id];
   if (m && m.c >= 0) {
-    const on = $('#f_mo2').checked && catOn(m.c);
+    const on = $('#f_mo2').checked && catOn(m.c) && (hovCat2 === null || catOf(CL[m.c].fr) === hovCat2);
     return { fillOpacity: 0, color: EDGE, weight: on ? .45 : 0, opacity: on ? .45 : 0 };
   }
   return { fillColor: '#fff', fillOpacity: $('#f_out2').checked ? .5 : 0, color: '#000', weight: .8, opacity: $('#f_out2').checked ? .3 : 0 };
@@ -77,6 +77,13 @@ function initMap2() {
 
 ['f_out2', 'f_mo2', 'f_dense', 'f_cat0', 'f_cat1', 'f_cat2', 'f_reg2']
   .forEach(i => $('#' + i).onchange = () => { if (L2) { L2.setStyle(st2); L2c.setStyle(st2c); L2reg.setStyle(st2reg) } });
+
+// подсветка по наведению на строку легенды (как на стр.1)
+[0, 1, 2].forEach(t => {
+  const row = $('#f_cat' + t).closest('.row');
+  row.addEventListener('mouseenter', () => { hovCat2 = t; L2c && L2c.setStyle(st2c); L2 && L2.setStyle(st2) });
+  row.addEventListener('mouseleave', () => { hovCat2 = null; L2c && L2c.setStyle(st2c); L2 && L2.setStyle(st2) });
+});
 
 const P2_ALL = ['f_cat0', 'f_cat1', 'f_cat2', 'f_out2', 'f_dense', 'f_reg2'];
 const p2SetAll = v => { P2_ALL.forEach(i => $('#' + i).checked = v); if (L2) { L2.setStyle(st2); L2c.setStyle(st2c); L2reg.setStyle(st2reg) } };
