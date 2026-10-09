@@ -45,6 +45,7 @@ const catOf = v => v > 115 ? 0 : v >= 85 ? 1 : 2;
 // ---------- навигация и страницы ----------
 const inited = {}, maps = {};
 $$('nav button').forEach(b => (b.onclick = () => show(b.dataset.p)));
+$$('.chip[data-go]').forEach(b => (b.onclick = () => show(b.dataset.go)));
 
 function show(p) {
   $$('nav button').forEach(b => b.classList.toggle('on', b.dataset.p == p));
