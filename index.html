@@ -1,288 +1,453 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Рыночные агломерации</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css'">
-<style>/* Рыночные агломерации — стили.
-   1 токены · 2 навигация и каркас · 3 карты · 4 панель ·
-   5 строки-фильтры · 6 чипы и бары · 7 тултипы и попопы · 8 документ (стр. 3) */
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>«Архипелаги изобилия» — новая экономическая кластеризация муниципалитетов России</title>
+<meta name="description" content="Кластеризация муниципалитетов России по тратам и транспортной связности. Команда «Урбан Лайф», конкурс СберИндекса.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --brand: #6139E7;
+    --brand-ink: #4A25C9;
+    --brand-tint: #F1EDFD;
+    --t-similar: #A48DF5;
+    --t-macro: #6139E7;
+    --t-new: #FF6B3D;
+    --paper: #FFFFFF;
+    --paper-2: #F7F6FB;
+    --ink: #16141F;
+    --muted: #6B6880;
+    --line: #E4E1EE;
+    --wrap: 1180px;
+    --gut: clamp(20px, 4vw, 48px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { margin: 0; font-family: "Onest", "Helvetica Neue", Arial, sans-serif; color: var(--ink);
+         background: var(--paper); font-size: 18px; line-height: 1.55; -webkit-font-smoothing: antialiased; }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: var(--brand); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--brand); outline-offset: 3px; border-radius: 4px; }
+  .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gut); }
+  .num { font-variant-numeric: tabular-nums; }
 
-/* ---------- 1. токены ---------- */
-:root {
-  --ink: #1d2433;          /* основной текст */
-  --ink-2: #475467;        /* вторичный текст (chips) */
-  --ink-3: #344054;        /* текст документов */
-  --muted: #667085;        /* приглушённый текст */
-  --faint: #98a2b3;        /* ещё тише (сноски тултипов) */
-  --bg: #fff;
-  --bg-page: #e9ecef;      /* фон под картами */
-  --soft: #f5f5f5;         /* плашки, чипы, кнопки-подложки */
-  --soft-2: #fafbfc;       /* вложенные подложки (состав МО) */
-  --line: #e4e7ec;         /* рамки */
-  --accent: #2f5bea;
-  --edge: #344054;         /* контуры полигонов */
-  --grey-mo: #cfd4dc;      /* МО вне выборки */
-  --warn-bg: #fffaeb;
-  --warn-line: #fedf89;
+  /* ---------- навигация ---------- */
+  .nav { position: sticky; top: 0; z-index: 10; background: rgba(255,255,255,.94); border-bottom: 1px solid var(--line); }
+  .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; }
+  .nav .logo { font-weight: 700; font-size: 16px; color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; }
+  .nav .logo i { width: 14px; height: 14px; background: var(--brand); border-radius: 3px; }
+  .nav ul { list-style: none; display: flex; gap: 28px; margin: 0; padding: 0; font-size: 15px; }
+  .nav ul a { color: var(--muted); text-decoration: none; transition: color .15s; }
+  .nav ul a:hover { color: var(--ink); }
 
-  --r-sm: 5px; --r-md: 8px; --r-lg: 10px; --r-xl: 12px; --r-full: 999px;
-  --sp-1: 4px; --sp-2: 8px; --sp-3: 12px; --sp-4: 16px; --sp-5: 24px;
-  --fs-xs: 11px; --fs-sm: 11.5px; --fs-md: 12.5px; --fs: 14px;
-  --fs-lg: 16px; --fs-xl: 18px;
-  --lh: 1.45;
-  --nav-h: 46px;
-  --panel-w: 430px;
-  --panel-margin: 12px;
-  --sw-size: 16px;
-  --bar-h: 4px;
-  --shadow: 0 4px 18px rgba(16, 24, 40, .20);
-  --shadow-sm: 0 1px 3px rgba(16, 24, 40, .08);
-  --t-fast: .12s; --t: .15s;
-  --blur: 6px;
-}
+  /* ---------- кнопки ---------- */
+  .btn { display: inline-flex; align-items: center; gap: 10px; padding: 14px 22px; border-radius: 8px;
+         font: 600 16px/1 inherit; font-family: inherit; text-decoration: none; transition: background .15s, color .15s, border-color .15s; }
+  .btn-primary { background: var(--brand); color: #fff; }
+  .btn-primary:hover { background: var(--brand-ink); }
+  .btn-ghost { color: var(--ink); border: 1px solid var(--line); }
+  .btn-ghost:hover { border-color: var(--ink); }
+  .btn .arr { transition: transform .15s; }
+  .btn:hover .arr { transform: translateX(3px); }
 
-* { box-sizing: border-box }
-html, body { margin: 0; height: 100%; font: var(--fs)/var(--lh) system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); background: var(--bg) }
+  /* ---------- первый экран ---------- */
+  .hero { padding: clamp(56px, 9vw, 120px) 0 48px; }
+  .eyebrow { font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--brand); margin: 0 0 20px; }
+  .hero h1 { font-size: clamp(40px, 6.6vw, 88px); line-height: 1.02; letter-spacing: -.035em; font-weight: 700; margin: 0; max-width: 13ch; }
+  .hero h1 .h1-sub { display: block; font-size: clamp(24px, 2.6vw, 34px); line-height: 1.2; letter-spacing: -.02em;
+                     font-weight: 500; color: var(--brand); margin-top: 20px; max-width: 22ch; }
+  .hero .lead { font-size: clamp(19px, 1.7vw, 23px); line-height: 1.5; color: #3B3850; max-width: 40ch; margin: 32px 0 0; }
+  .hero .lead b { color: var(--ink); }
+  .hero-grid { display: grid; grid-template-columns: 1.35fr 1fr; gap: 48px; align-items: end; }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
 
-/* ---------- 2. навигация и каркас ---------- */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; height: var(--nav-h); z-index: 2000;
-  display: flex; gap: 4px; align-items: center; padding: 0 var(--sp-3);
-  background: rgba(255, 255, 255, .97); backdrop-filter: blur(var(--blur));
-  border-bottom: 1px solid var(--line); overflow-x: auto; white-space: nowrap;
-}
-nav b { margin-right: 10px; font-size: var(--fs-lg) }
-nav button { border: 0; background: none; color: var(--muted); padding: 6px var(--sp-3); border-radius: var(--r-md); cursor: pointer; font: inherit; font-weight: 600; font-size: var(--fs-sm) }
-nav button:hover { background: var(--soft); color: var(--ink) }
-nav button.on { background: var(--soft); color: var(--accent) }
+  /* ---------- обзорная карта ---------- */
+  .overview { padding: 40px 0 96px; }
+  .overview figure { margin: 0; background: var(--paper-2); border-radius: 12px; padding: clamp(16px, 3vw, 40px); }
+  .legend { display: flex; flex-wrap: wrap; gap: 12px 32px; margin: 24px 0 0; padding: 0; list-style: none; font-size: 15px; }
+  .legend li { display: flex; align-items: center; gap: 10px; }
+  .legend i { width: 16px; height: 16px; border-radius: 3px; flex: none; }
+  .legend .off { background: none; border: 2px solid var(--ink); }
+  .legend b { font-weight: 600; }
+  figcaption { color: var(--muted); font-size: 14px; margin-top: 12px; }
 
-.page { position: absolute; top: var(--nav-h); left: 0; right: 0; bottom: 0; display: none; overflow: auto }
-.page.on { display: block }
+  /* ---------- секции ---------- */
+  section { scroll-margin-top: 72px; }
+  .sec { padding: 96px 0; border-top: 1px solid var(--line); }
+  .sec-h { display: grid; grid-template-columns: 1fr 2fr; gap: 48px; margin-bottom: 56px; }
+  .sec-h .k, .why > .k { font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); padding-top: 12px; }
+  h2 { font-size: clamp(32px, 4vw, 52px); line-height: 1.08; letter-spacing: -.03em; font-weight: 700; margin: 0; }
+  .sec-h p { font-size: 20px; color: #3B3850; margin: 20px 0 0; max-width: 46ch; }
+  h3 { font-size: clamp(24px, 2.4vw, 32px); line-height: 1.15; letter-spacing: -.02em; font-weight: 600; margin: 0; }
 
-/* ---------- 3. карты ---------- */
-.map { position: absolute; inset: 0; background: var(--bg-page) }
-.leaflet-container { font: inherit; background: var(--bg-page) }
-.leaflet-control-zoom { border: 0 !important; box-shadow: var(--shadow) !important; border-radius: var(--r-lg) !important; overflow: hidden }
+  /* ---------- крупные заголовки секций ---------- */
+  .big-h { display: grid; grid-template-columns: 1fr 1.4fr; gap: 48px; align-items: start; margin-bottom: 56px; }
+  .big-h h2 { font-size: clamp(56px, 8vw, 112px); line-height: .95; letter-spacing: -.045em; }
+  .big-h p { font-size: clamp(19px, 1.6vw, 22px); color: #3B3850; margin: 0 0 20px; max-width: 48ch; }
+  .big-h p:last-child { margin-bottom: 0; }
 
-/* ---------- 4. панель ---------- */
-.panel {
-  position: absolute; top: var(--panel-margin); left: var(--panel-margin); z-index: 1000;
-  width: min(var(--panel-w), calc(100vw - 2 * var(--panel-margin)));
-  max-height: calc(100% - 2 * var(--panel-margin));
-  display: flex; flex-direction: column;
-  background: rgba(255, 255, 255, .97); backdrop-filter: blur(var(--blur));
-  border-radius: var(--r-xl); box-shadow: var(--shadow); font-size: var(--fs-sm);
-}
-.panel > header { display: flex; align-items: center; gap: 10px; padding: var(--sp-3) 14px; cursor: pointer; user-select: none }
-.panel h1 { font-size: var(--fs-lg); line-height: 1.25; margin: 0 }
-.panel .sub { font-size: var(--fs-xs); color: var(--muted); margin-top: 1px }
-.hdr-txt { flex: 1 }
-.tog { flex: none; width: 28px; height: 28px; border: 0; border-radius: var(--r-md); background: var(--soft); cursor: pointer; font-size: var(--fs-md); color: var(--ink); transition: transform var(--t) }
-.panel.collapsed .tog { transform: rotate(180deg) }
-.pbody { overflow-y: auto; padding: 0 14px 14px; border-top: 1px solid var(--line) }
-.panel.collapsed .pbody { display: none }
-.lead { margin: var(--sp-3) 0 10px; line-height: var(--lh) }
+  /* ---------- карты ---------- */
+  .map-cap { color: var(--ink); font-size: clamp(22px, 2.4vw, 32px); line-height: 1.25; letter-spacing: -.02em;
+             font-weight: 500; margin: 0 0 24px; max-width: 34ch; }
+  .map-cap em { font-style: normal; color: var(--brand); }
+  .map-fig { margin: 72px 0 0; background: var(--paper-2); border-radius: 12px; padding: clamp(16px, 3vw, 40px); }
 
-.stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--sp-1); margin-bottom: var(--sp-1) }
-.stat { background: var(--soft); border-radius: var(--r-md); padding: var(--sp-2) 10px }
-.stat b { display: block; font-size: var(--fs-xl); font-variant-numeric: tabular-nums; line-height: 1.1 }
-.stat span { font-size: var(--fs-xs); color: var(--muted); line-height: 1.25; display: block; margin-top: var(--sp-1) }
+  /* ---------- о проекте ---------- */
+  .team { display: grid; grid-template-columns: 1.4fr 1fr; gap: 48px; }
+  .team .k { font-size: 14px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin-bottom: 16px; }
+  .team p { color: #3B3850; margin: 20px 0 0; max-width: 52ch; }
+  .people { list-style: none; margin: 0; padding: 0; }
+  .people li { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; padding: 18px 0; border-top: 1px solid var(--line); font-size: 20px; }
+  .people li:last-child { border-bottom: 1px solid var(--line); }
+  .people b { font-weight: 600; }
+  .people a { font-size: 16px; }
 
-.group { margin-top: 14px }
-.group-h { display: flex; align-items: baseline; justify-content: space-between; font-size: var(--fs-xs); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin-bottom: var(--sp-1) }
-.acts button { border: 0; background: none; color: var(--accent); font-size: var(--fs-xs); cursor: pointer; padding: 0 0 0 var(--sp-2); text-transform: none; letter-spacing: 0; font-weight: 600 }
-.acts button:hover { text-decoration: underline }
+  .more-new { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 56px; }
+  .more-new figure { margin: 0; }
+  .more-new img { border-radius: 12px; border: 1px solid var(--line); }
+  .more-new figcaption { font-size: 16px; color: #3B3850; margin-top: 12px; line-height: 1.4; }
+  .more-new figcaption b { display: block; font-size: 18px; color: var(--ink); margin-bottom: 4px; }
 
-.hint { font-size: var(--fs-sm); color: var(--muted); margin: var(--sp-2) 0 0; line-height: 1.4 }
+  /* ---------- метод ---------- */
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; counter-reset: s; }
+  .steps > li { counter-increment: s; padding: 28px 32px 0 0; border-top: 2px solid var(--ink); }
+  .steps > li::before { content: "0" counter(s); display: block; font-size: 14px; font-weight: 600; color: var(--brand); margin-bottom: 20px; }
+  .steps h3 { font-size: 24px; margin-bottom: 12px; }
+  .steps p { margin: 0 0 12px; color: #3B3850; font-size: 17px; }
+  .steps ul { margin: 0; padding-left: 18px; color: #3B3850; font-size: 17px; }
+  .steps li li { margin: 6px 0; }
 
-/* раскрывающиеся блоки */
-details > summary { cursor: pointer; font-weight: 600; padding: 7px 0; list-style: none; display: flex; align-items: center; gap: var(--sp-1) }
-summary::-webkit-details-marker { display: none }
-details > summary::before { content: "▸"; font-size: var(--fs-xs); color: var(--muted); transition: transform var(--t-fast); display: inline-block; width: 10px }
-details[open] > summary::before { transform: rotate(90deg) }
+  /* ---------- типы ---------- */
+  .type { display: grid; grid-template-columns: 1.5fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: center; padding: 56px 0; }
+  .type + .type { border-top: 1px solid var(--line); }
+  .type:nth-of-type(even) { grid-template-columns: 1fr 1.5fr; }
+  .type:nth-of-type(even) .type-img { order: 2; }
+  .type-img { border-radius: 12px; overflow: hidden; border: 1px solid var(--line); }
+  .tag { display: inline-flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 600; letter-spacing: .04em; text-transform: uppercase; margin-bottom: 20px; }
+  .tag i { width: 14px; height: 14px; border-radius: 3px; background: var(--c); }
+  .type .count { display: flex; align-items: baseline; gap: 12px; margin: 24px 0; padding: 16px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+  .type .count b { font-size: 44px; font-weight: 600; letter-spacing: -.03em; line-height: 1; color: var(--c); }
+  .type .count span { color: var(--muted); font-size: 15px; line-height: 1.35; }
+  .type .ex { font-size: 13px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--muted); margin: 0 0 8px; }
+  .type p { margin: 0 0 14px; color: #3B3850; }
+  .type .also { font-size: 16px; color: var(--muted); }
+  .type[data-t="similar"] { --c: var(--t-similar); }
+  .type[data-t="similar"] .count b { color: #7A5CF0; }
+  .type[data-t="macro"] { --c: var(--t-macro); }
+  .type[data-t="new"] { --c: var(--t-new); }
 
-/* ---------- 5. строки-фильтры ---------- */
-.row { display: flex; align-items: flex-start; gap: 10px; padding: 5px 6px; margin: 0 -6px; border-radius: 6px; cursor: pointer }
-.row:hover { background: var(--soft) }
-.row input { margin: 2px 0 0; flex: none; accent-color: var(--accent) }
-.sw { flex: none; width: var(--sw-size); height: var(--sw-size); border-radius: 4px; border: 2px solid var(--c); background: color-mix(in srgb, var(--c) 55%, #fff) }
-.sw.mo { border: 1.5px solid #333; background: none }
-.sw.out { border: 2px solid #000; background: #fff }
-.sw.dash { border: 2px dashed #000; background: rgba(0, 0, 0, .12) }
-.sw.dot { border: 2px dotted var(--c); background: none }
-.txt { flex: 1; line-height: 1.3 }
-.txt b { font-weight: 600 }
-.txt small { display: block; color: var(--muted); font-size: var(--fs-sm); margin-top: 1px }
-.cnt { flex: none; font-variant-numeric: tabular-nums; font-size: var(--fs-sm); color: var(--muted); background: var(--soft); border-radius: var(--r-full); padding: 1px var(--sp-2) }
-.row:has(input:not(:checked)) .txt, .row:has(input:not(:checked)) .sw { opacity: .45 }
+  /* ---------- проверки ---------- */
+  .checks { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+  .check { background: var(--paper-2); border-radius: 12px; padding: 32px; }
+  .check h3 { font-size: 22px; margin-bottom: 12px; }
+  .check p { margin: 0; color: #3B3850; font-size: 17px; }
+  .bars { margin-top: 24px; display: grid; gap: 10px; }
+  .bar { display: grid; grid-template-columns: 170px 1fr 52px; align-items: center; gap: 12px; font-size: 15px; }
+  .bar .track { height: 10px; background: #E4E1EE; border-radius: 2px; overflow: hidden; }
+  .bar .track i { display: block; height: 100%; background: #B9B3CF; }
+  .bar.ours .track i { background: var(--brand); }
+  .bar.ours { font-weight: 600; }
+  .bar .v { text-align: right; }
+  .thr { width: 100%; border-collapse: collapse; margin-top: 20px; font-size: 16px; }
+  .thr td { padding: 10px 0; border-bottom: 1px solid var(--line); }
+  .thr td:not(:first-child) { text-align: right; }
+  .thr tr.ours td { font-weight: 600; color: var(--brand); }
+  .thr th { text-align: right; font-size: 13px; color: var(--muted); font-weight: 500; padding-bottom: 6px; }
+  .thr th:first-child { text-align: left; }
 
-/* ---------- 6. чипы и бары ---------- */
-.chips { display: flex; flex-wrap: wrap; gap: var(--sp-1); margin: 10px 0 var(--sp-1) }
-.chip { background: var(--soft); border-radius: var(--r-full); padding: 2px 9px; font-size: var(--fs-sm); color: var(--ink-2) }
-.lchip { vertical-align: 1px; margin-left: var(--sp-1) }
-.lchip a { color: var(--accent); text-decoration: none }
-.lchip a:hover { text-decoration: underline }
-.doc h2 .chip[data-go] { border: 0; cursor: pointer; color: var(--accent); font-size: var(--fs-sm); margin-left: auto; transition: background var(--t) }
-.doc h2 .chip[data-go]:hover { background: #ececec }
-.sec { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 12px 0 var(--sp-1) }
+  /* ---------- что дальше ---------- */
+  .next { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .next p { color: #3B3850; margin: 12px 0 0; }
 
-.bars { display: grid; grid-template-columns: 1fr auto; gap: var(--sp-1) 10px; font-size: var(--fs-md); align-items: center }
-.bars .v { font-variant-numeric: tabular-nums; color: var(--muted) }
-.bars .bar { grid-column: 1 / -1; height: var(--bar-h); background: var(--soft); border-radius: 2px; margin-bottom: var(--sp-1); overflow: hidden; position: relative }
-.bars .bar i { display: block; height: 100%; border-radius: 2px; background: var(--edge) }
+  /* ---------- данные ---------- */
+  .open { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; }
+  .open p { color: #3B3850; margin: 16px 0 0; }
+  .limits { margin: 0; padding: 0; list-style: none; }
+  .limits li { padding: 16px 0; border-top: 1px solid var(--line); color: #3B3850; font-size: 17px; }
+  .limits li:last-child { border-bottom: 1px solid var(--line); }
 
-.mol { max-height: 200px; overflow-y: auto; font-size: var(--fs-md); background: var(--soft); border-radius: var(--r-md); padding: var(--sp-1) 10px; margin-top: var(--sp-1); line-height: 1.55 }
+  footer { padding: 48px 0 64px; border-top: 1px solid var(--line); color: var(--muted); font-size: 15px; }
+  footer .wrap { display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
 
-/* ---------- 7. тултипы и попопы ---------- */
-.leaflet-tooltip.tt { border: 0; border-radius: var(--r-md); padding: 7px 10px; box-shadow: var(--shadow); color: var(--ink); white-space: normal; width: 300px; box-sizing: border-box }
-.leaflet-tooltip.tt::before { display: none }
-.tt .t { font-weight: 600; font-size: var(--fs-md); line-height: 1.25 }
-.tt .m { font-size: var(--fs-sm); color: var(--muted); margin-top: var(--sp-1); display: flex; align-items: center; gap: 5px }
-.tt .go { font-size: 10.5px; color: var(--faint); margin-top: var(--sp-1) }
-.tt .r { display: flex; justify-content: space-between; font-size: var(--fs-md); margin-top: var(--sp-1); gap: 10px }
-.tt .r b { font-variant-numeric: tabular-nums }
-
-.dot { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50% }
-.leaflet-popup-content-wrapper { border-radius: var(--r-xl); box-shadow: var(--shadow) }
-.leaflet-popup-content { margin: 12px 14px; font-size: var(--fs-sm); line-height: 1.4; max-height: 440px; overflow-y: auto; color: var(--ink) }
-.ph { display: flex; gap: 9px; align-items: flex-start; padding-right: 14px }
-.pt { font-size: 15px; font-weight: 700; line-height: 1.25; display: flex; align-items: center; gap: 6px }
-.pt .dot { width: 11px; height: 11px }
-.ps { font-size: var(--fs-md); color: var(--muted); margin-top: var(--sp-1) }
-
-/* ---------- 8. документ (стр. 3) ---------- */
-.doc { max-width: 820px; margin: 0 auto; padding: 26px var(--sp-4) 80px }
-.doc h1 { font-size: 28px; margin: 0 0 var(--sp-1) }
-.doc .s { color: var(--muted); margin-bottom: 6px }
-.doc h2 { margin: 28px 0 var(--sp-1); font-size: 19px; display: flex; align-items: baseline }
-.doc p, .doc li { color: var(--ink-3) }
-.doc ol, .doc ul { margin: var(--sp-1) 0 var(--sp-2) 18px; padding: 0; line-height: var(--lh) }
-.doc li { margin: var(--sp-1) 0 }
-
-table { border-collapse: collapse; width: 100%; font-size: var(--fs); margin: var(--sp-2) 0 }
-td, th { border-bottom: 1px solid var(--line); padding: 7px 8px; text-align: left; vertical-align: top }
-th { color: var(--muted); font-weight: 600; font-size: var(--fs-sm); text-transform: uppercase; letter-spacing: .04em }
-
-.warn { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: var(--r-lg); padding: 10px 14px; margin: 10px 0 }
-
-code { background: var(--soft); padding: 1px var(--sp-1); border-radius: var(--r-sm); font-size: var(--fs-md) }
-
-.fx { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: var(--fs-md); white-space: nowrap; color: var(--ink) }
-.fx sub { font-size: 10px }
-.fn { font-size: var(--fs-md); color: var(--muted); line-height: var(--lh) }
-
-@media (prefers-reduced-motion: reduce) {
-  *,*::before,*::after{transition:none !important;animation:none !important}
-}
+  /* ---------- адаптив ---------- */
+  @media (max-width: 900px) {
+    .hero-grid, .sec-h, .big-h, .type, .type:nth-of-type(even), .checks, .next, .open, .team, .more-new { grid-template-columns: 1fr; gap: 28px; }
+    .type:nth-of-type(even) .type-img { order: 0; }
+    .steps { grid-template-columns: 1fr; gap: 32px; }
+    .nav ul { display: none; }
+    .sec { padding: 64px 0; }
+    .bar { grid-template-columns: 120px 1fr 44px; font-size: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; } }
 </style>
-</head><body>
+</head>
+<body>
 
-<nav><b>🗺 Рыночные агломерации</b>
-<button data-p="1" class="on">1 · Агломерации</button><button data-p="2">2 · Цены и зарплаты</button><button data-p="3">3 · Методология</button></nav>
+<nav class="nav" aria-label="Основная навигация">
+  <div class="wrap">
+    <a class="logo" href="#top"><i></i>Архипелаги изобилия</a>
+    <ul>
+      <li><a href="#method">Метод</a></li>
+      <li><a href="#types">Что получилось</a></li>
+      <li><a href="#checks">Проверка</a></li>
+      <li><a href="map.html">Карта</a></li>
+      <li><a href="#team">Команда</a></li>
+    </ul>
+  </div>
+</nav>
 
-<!-- ============================= 1 · Официальные vs рыночные ============================= -->
-<section class="page on" id="p1"><div class="map" id="map1"></div>
-<div class="panel" id="pn1"><header><div class="hdr-txt"><h1>Рыночные агломерации</h1><div class="sub">кластеризация трат · 2144 МО · состояние на декабрь 2024</div></div><button class="tog" type="button" title="Свернуть / развернуть">▲</button></header>
-<div class="pbody">
-<p class="lead">Министерства выделяют официальные агломерации политически — в том числе «из удобства»: чтобы было понятно, куда и как направлять бюджеты. Но рынок не знает про административные границы: похожие люди живут по разные стороны. Чтобы найти «похожих», посмотрели, сколько они тратят и на что — по данным Сбера о платежах по категориям. Соединили муниципалитеты, связанные дорогами в пределах 50 км, и сгруппировали похожие по профилю расходов в <b>рыночные кластеры</b>.</p>
-<div class="stats"><div class="stat"><b>2144</b><span>муниципальных образования в выборке</span></div><div class="stat"><b>52</b><span>официальных агломераций</span></div><div class="stat"><b>134</b><span>рыночных кластера с более чем тремя МО</span></div></div>
-<div class="group"><div class="group-h"><span>Рыночные кластеры</span><span class="acts"><button type="button" id="p1_on">всё</button><button type="button" id="p1_off">ничего</button></span></div>
-<label class="row"><input type="checkbox" id="f_match" checked><span class="sw" style="--c:#6E75D0"></span><span class="txt"><b>Похожи на официальные агломерации</b><small>пересекаются частично или полностью с агломерацией</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_merge" checked><span class="sw" style="--c:#DD8FB7"></span><span class="txt"><b>Объединяют несколько официальных агломераций</b><small>пересекаются с 2+ агломерациями</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_new" checked><span class="sw" style="--c:#E84A4A"></span><span class="txt"><b>Новые рыночные агломерации</b><small>не пересекаются с официальными агломерациями</small></span><span class="cnt"></span></label>
+<main id="top">
 
-<div class="group"><div class="group-h"><span>Официальные агломерации</span></div>
-<label class="row"><input type="checkbox" id="f_off" checked><span class="sw dash" style="--c:#D3C52B"></span><span class="txt"><b>Официальный перечень</b><small>Агломерации и городские округа, 52 позиции</small></span><span class="cnt"></span></label></div>
-<div class="group"><div class="group-h"><span>Карта</span></div>
-<label class="row"><input type="checkbox" id="f_reg" checked><span class="sw" style="--c:#c3c9d2"></span><span class="txt"><b>Регионы</b><small>подложка: границы субъектов РФ 2023</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_small" checked><span class="sw" style="--c:#D9D9D9"></span><span class="txt"><b>Малые кластеры</b><small>кластеры с 1–2 МО</small></span><span class="cnt"></span></label></div>
-<label class="row"><input type="checkbox" id="f_out" checked><span class="sw out"></span><span class="txt"><b>МО вне выборки</b><small>по этим МО у нас не хватает данных</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_mo"><span class="sw mo"></span><span class="txt"><b>Границы отдельных МО</b><small>тонкий тёмный контур</small></span></label></div>
-<p class="hint">Частичные совпадения, расширения, объединения и новые рынки — продукты анализа: они показывают, где административные границы не совпадают с реальностью рынка. Наведите на область — подсветится весь кластер; кликните, чтобы узнать подробности и состав кластера.</p>
-</div></div></section>
+  <header class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Команда «Урбан Лайф» · Леонид Харлов, Андрей Дорожный</p>
+      <div class="hero-grid">
+        <h1>«Архипелаги изобилия»<span class="h1-sub">— новая экономическая кластеризация муниципалитетов России</span></h1>
+        <div>
+          <p class="lead">Мы кластеризовали муниципалитеты на основе трат и транспортной связности и увидели связи между территориями, которых не видно в официальных агломерациях.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="map.html">Открыть карту <span class="arr" aria-hidden="true">→</span></a>
+            <a class="btn btn-ghost" href="#data">Код на GitHub</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
 
-<!-- ============================= 2 · Цены и зарплаты ============================= -->
-<section class="page" id="p2"><div class="map" id="map2"></div>
-<div class="panel" id="pn2"><header><div class="hdr-txt"><h1>Цены и зарплаты</h1><div class="sub">рыночные кластеры × средняя зарплата · 2024</div></div><button class="tog" type="button" title="Свернуть / развернуть">▲</button></header>
-<div class="pbody">
-<p class="lead"><b>Что делать с рыночными агломерациями?</b> Для региональных и муниципальных властей это подсказка, с какими соседними территориями логично взаимодействовать в социально-экономических проектах. Для бизнеса, особенно розничного банка, подключив к ценам зарплаты, видно, куда вкладывать сервисы, которые делают жизнь дешевле — акции и рассрочки. Они особенно нужны там, где цены на товары высокие, а зарплаты низкие — на карте это красная категория.</p>
-<div class="stats"><div class="stat"><b>2144</b><span>муниципальных образования в выборке</span></div><div class="stat"><b>134</b><span>рыночных кластера с более чем тремя МО</span></div><div class="stat"><b>55%</b><span>кластеров с низкой покупательной способностью</span></div></div>
-<div class="group"><div class="group-h"><span>Категории</span><span class="acts"><button type="button" id="p2_on">все</button><button type="button" id="p2_off">ничего</button></span></div>
-<label class="row"><input type="checkbox" id="f_cat2" checked><span class="sw" style="--c:#E84A4A"></span><span class="txt"><b>Цены высокие</b><small>цены высокие относительно зарплаты</small></span><span class="cnt"></span></label></div>
-<label class="row"><input type="checkbox" id="f_cat1" checked><span class="sw" style="--c:#31C896"></span><span class="txt"><b>Цены нормальные</b><small>на зарплату товаров можно купить столько же как в среднем по стране</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_cat0" checked><span class="sw" style="--c:#6E75D0"></span><span class="txt"><b>Цены хорошие</b><small>типичная зарплата в регионе покупает заметно больше товаров</small></span><span class="cnt"></span></label>
-<div class="group"><div class="group-h"><span>Карта</span></div>
-<label class="row"><input type="checkbox" id="f_reg2" checked><span class="sw" style="--c:#c3c9d2"></span><span class="txt"><b>Регионы</b><small>подложка: границы субъектов РФ 2023</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_out2" checked><span class="sw out"></span><span class="txt"><b>МО вне выборки</b><small>по этим МО у нас не хватает данных</small></span><span class="cnt"></span></label>
-<label class="row"><input type="checkbox" id="f_mo2"><span class="sw mo"></span><span class="txt"><b>Границы отдельных МО</b><small>тонкий тёмный контур</small></span></label>
-<label class="row"><input type="checkbox" id="f_dense" checked><span class="sw mo" style="--c:#D9D9D9"></span><span class="txt"><b>Малые кластеры</b><small>кластеры с 1–2 МО</small></span><span class="cnt"></span></label></div>
-<p class="hint">Цвет кластера — категория по цене с учётом средней зарплаты в регионе. Наведите на МО для краткой справки, кликните для подробностей и состава кластера.</p></div>
-</div></div></section>
+  <section class="overview" aria-labelledby="official-h">
+    <div class="wrap">
+      <figure>
+        <figcaption class="map-cap" id="official-h">По данным ИЭГ, в России 52 агломерации — вот они на карте. <em>Но отражают ли они реальные экономические связи?</em></figcaption>
+        <img src="img/official.png" alt="Карта России с 52 официальными агломерациями" width="2000" height="1000">
+      </figure>
+    </div>
+  </section>
 
-<!-- ============================= 3 · Методология ============================= -->
-<section class="page" id="p3"><div class="doc">
-<h1>Методология</h1><div class="s">как считаются рыночные агломерации, данные и метрики</div>
+  <section class="sec" id="why">
+    <div class="wrap">
+      <div class="big-h">
+        <h2>Зачем</h2>
+        <div>
+          <p>В России нет единой методологии выявления агломераций. Перечень из 52 агломераций помогает государству решать, куда и как направлять деньги, поэтому его границы часто повторяют границы регионов и районов.</p>
+          <p>Мы решили это проверить и сделали свою кластеризацию на основе трат и связности территорий. Она показала связи между территориями, которых до сих пор не было видно.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h2>Рыночные агломерации: как считаются</h2>
-<ol>
-<li><b>Профиль расходов.</b> Для каждого муниципалитета (МО) — составляется вектор из 6 значений: доли трат на еду, здоровье, кафе, транспорт, маркетплейсы и общий объём трат (логарифм). Основа для "профиля" — данные Сбера о платежах за 2023–24 гг. Чтобы снизить влияние сезонности, использовали скользящее среднее по 3 месяцам. В выборку входят МО с данными не менее чем за 10 месяцев: 2144 МО из 2548 в общем.</li>
-<li><b>Дорожная сеть.</b> Для поиска кандидатов для кластеров брали МО, связанные дорогами в пределах 50 км. Веса ребёр получившегося графа — косинусное сходство профилей трат за последние 6 месяцев. У каждого МО мы оставили 8 самых похожих ближайших соседей. Именно 8, так как анализ чувствительности показал, что это оптимальное по ARI число (5/8/12 → 0.677/0.726/0.705). Итого получилось 3637 рёбер.</li>
-<li><b>Кластеризация.</b> Louvain-алгоритм по весам рёбер. Считаем 7 скользящих окон (с шагом в квартал). Составы между окнами совпали на 0.97–0.99 (Jaccard). Для визулизации на карте взяли кластеры из последнего окна (декабрь 2024). Кластеризация произвела 134 плотных кластера (3+ МО) и 739 малых кластера (1-2 МО, см. Ограничения).</li>
-</ol>
+  <section class="sec" id="method">
+    <div class="wrap">
+      <div class="sec-h">
+        <div class="k">Метод</div>
+        <div>
+          <h2>Территории объединяются по схожему типажу трат и транспортной связности</h2>
+        </div>
+      </div>
+      <ol class="steps">
+        <li>
+          <h3>Профиль трат</h3>
+          <p>Для каждого муниципалитета — шесть чисел, усредненных за полгода:</p>
+          <ul>
+            <li>доли расходов на продукты, здоровье, кафе, транспорт и маркетплейсы;</li>
+            <li>общий уровень трат на человека.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Сеть связей</h3>
+          <p>Соединяем два муниципалитета, если:</p>
+          <ul>
+            <li>между ними не больше 50 км по дорогам;</li>
+            <li>сосед входит в восьмерку самых похожих по тратам среди близких.</li>
+          </ul>
+        </li>
+        <li>
+          <h3>Кластеры</h3>
+          <p>Алгоритм Louvain находит в сети группы, плотно связанные внутри и слабо — снаружи. На срезе декабря 2024 года 3637 связей дали 133 кластера из трех и более муниципалитетов.</p>
+        </li>
+      </ol>
 
-<h2>Сравнение с официальным перечнем <button class="chip" data-go="1">страница 1</button></h2>
-<p>Официальный перечень агломераций и городских округов содержит 52 позиции; состав по МО сопоставляется по ОКТМО, в итоговом сравнении участвуют все 52. Каждый рыночный кластер относится к одной из четырёх категорий (страница 1):</p>
-<ul>
-<li>похожи на официальные агломерации и пересекаются с ними — 103 (15 кластеров совпадают на 100+-30%, 70 кластеров — менее чем на 70%, 14 кластеров — на 30%+ шире официальных кластеров, 4 слияния нескольких агломераций);</li>
-<li>объединяют сразу несколько официальных агломераций — 5;</li>
-<li>новые рыночные агломерации, не пересекающиеся с официальными — 79.</li>
-</ul>
+      <figure class="map-fig">
+        <figcaption class="map-cap">Наши рыночные кластеры — <em>133 «архипелага»</em> из трех и более муниципалитетов.</figcaption>
+        <img src="img/clusters.png" alt="Карта России со 133 рыночными кластерами муниципалитетов" width="2000" height="1000" loading="lazy">
+      </figure>
+    </div>
+  </section>
 
-<h2>Цены и зарплаты <button class="chip" data-go="2">страница 2</button></h2>
-<table><tr><th>величина</th><th>формула</th><th>что значит</th></tr>
-<tr><td>Уровень цен</td><td class="fx">УЦ = 100 / k</td><td>сколько покупает 1000 ₽ при местных ценах; 100% = среднероссийский уровень</td></tr>
-<tr><td>Покупательская способность</td><td class="fx">ПС = УЦ × (зп<sub>МО</sub> / зп<sub>ср</sub>)</td><td>сколько покупает средняя зарплата МО — уровень цен, скорректированный на зарплату; 100% = среднероссийский уровень</td></tr>
-<tr><td>Категории</td><td class="fx">ПС &gt; 115%<br>ПС 85–115%<br>ПС &lt; 85%</td><td>«цены хорошие»<br>«цены нормальные»<br>«цены высокие»</td></tr>
-</table>
-<p class="fn">Обозначения: <i>k</i> — средний за 2024 г. коэффициент цены стандартной потребительской корзины региона (РФ = 1: если <i>k</i> &gt; 1, цены выше среднероссийских и УЦ &lt; 100%); зп<sub>МО</sub> — средняя зарплата в МО; зп<sub>ср</sub> — средняя зарплата по выборке.</p>
+  <section class="sec" id="types">
+    <div class="wrap">
+      <div class="big-h">
+        <h2>Что получилось?</h2>
+        <div>
+          <p>Мы сравнили наши рыночные кластеры с перечнем и границами официальных агломераций. Часть границ совпадает. В ряде случаев образовались новые макроагломерации, а иногда — новые, доселе неизвестные экономические союзы.</p>
+        </div>
+      </div>
 
-<p>Цены — региональные (коэффициенты корзины для 85 регионов), поэтому внутри региона все МО имеют одинаковый «уровень цен»; различия внутри кластера дают зарплаты. Зарплаты — средние месячные по МО за 2024 г. (Росстат, банк данных муниципального уровня).</p>
+      <article class="type" data-t="similar">
+        <div class="type-img"><img src="img/type_similar_kirov.png" alt="Карта Кировской агломерации: рыночный кластер и пунктиром официальная граница" width="1600" height="1200" loading="lazy"></div>
+        <div>
+          <div class="tag"><i></i>Тип 1</div>
+          <h3>Совпадает или похож на официальную агломерацию</h3>
+          <div class="count"><b class="num">49</b><span>кластеров повторяют официальную границу или уточняют ее: добавляют соседние районы либо отрезают лишние</span></div>
+          <p class="ex">Пример: Кировская агломерация</p>
+          <p>В официальную Кировскую агломерацию входят 5 муниципалитетов: Киров, Кирово-Чепецк, Слободской и окружающие их районы. Модель собрала все пять в один кластер и добавила еще два района — Белохолуницкий и Оричевский. Там тратят так же, как в пригородах Кирова.</p>
+          <p class="also">Еще пример: Екатеринбургская — все 16 официальных муниципалитетов в одном кластере и еще 6 соседних.</p>
+        </div>
+      </article>
 
-<h2>Данные</h2>
-<table><tr><th>источник</th><th>что даёт</th><th>где используется</th></tr>
-<tr><td>Потребительские безналичные расходы на уровне МО <span class="chip lchip"><a href="https://sberindex.ru/ru/dashboards/potrebitelskie-beznalicnye-rashody-na-urovne-munizipalnyh-obrazovanij" target="_blank">Сбер</a></span></td><td>ежемесячные расходы по категориям, 2144 МО</td><td>профили трат, кластеризация</td></tr>
-<tr><td>Сеть автодорог <span class="chip lchip"><a href="https://www.openstreetmap.org/" target="_blank">OSM</a></span></td><td>расстояния между МО (графе автодорог, 31.12.2024)</td><td>кластеризация</td></tr>
-<tr><td>Границы субъектов РФ <span class="chip lchip"><a href="https://www.openstreetmap.org/" target="_blank">OSM</a></span></td><td>границы субъектов РФ</td><td>визуализация (с.1–2)</td></tr>
-<tr><td>Средняя зарплата по субъектам РФ <span class="chip lchip"><a href="https://rosstat.gov.ru/labor_market_employment_salaries" target="_blank">Росстат</a></span></td><td>средние зарплаты МО</td><td>визуализация (с.2)</td></tr>
-<tr><td>Относительный размер продуктовой корзины по субъектам <span class="chip lchip"><a href="https://t.me/data_publication/1673" target="_blank">Сбер</a></span></td><td>ежемесячные ценовые коэффициенты корзины, 85 регионов, 27 мес.</td><td>визуализация (с.2)</td></tr>
-<tr><td>Список агломераций по ССЭР, СТП и другим соглашениям <span class="chip lchip"><a href="https://www.urbaneconomics.ru/sites/default/files/gorodskie_aglomeracii.pdf" target="_blank">Институт экономики города</a></span></td><td>официальный перечень агломераций и городских округов</td><td>кластеризация, визуализация (с.1)</td></tr>
-</table>
+      <article class="type" data-t="macro">
+        <div class="type-img"><img src="img/type_macro_kazan.png" alt="Карта макроагломерации Казань — Ульяновск — Чебоксары с тремя пунктирными официальными контурами" width="1600" height="1200" loading="lazy"></div>
+        <div>
+          <div class="tag"><i></i>Тип 2</div>
+          <h3>Макроагломерация</h3>
+          <div class="count"><b class="num">5</b><span>кластеров объединяют несколько официальных агломераций в одну</span></div>
+          <p class="ex">Пример: Казань — Ульяновск — Чебоксары</p>
+          <p>Официально это три разные агломерации в трех регионах. По тратам — одна: 51 муниципалитет в шести регионах, от Татарстана и Чувашии до Ульяновской области и Марий Эл.</p>
+          <p>В нее целиком вошла Чебоксарская агломерация, почти целиком — Ульяновско-Димитровградская (6 из 7 муниципалитетов) и большая часть Казанской (4 из 6).</p>
+        </div>
+      </article>
 
-<h2>Метрики качества</h2>
-<table><tr><th>метрика</th><th>финал (дороги и траты)</th><th>контроль*</th></tr>
-<tr><td>ARI</td><td>0.722–0.744</td><td>≈ 0.00<br>Д 0.658<br>Т 0.060</td></tr>
-<tr><td>Purity</td><td>0.953–0.974</td><td>0.434<br>Д 0.927<br>Т 0.226</td></tr>
-<tr><td>Modularity (Louvain)</td><td>0.829–0.841</td><td>≈ 0.00<br>Д 0.990<br>Т 0.807</td></tr>
-<tr><td>Стабильность окон (Jaccard)</td><td>0.97–0.99</td><td>—</td></tr>
-<tr><td>Силуэт (SW)</td><td>0.14</td><td>−0.06</td></tr>
-<tr><td>Calinski–Harabasz (CH)</td><td>216</td><td>~1</td></tr>
-<tr><td>Davies–Bouldin (S<sub>Dbw</sub>)</td><td>2.0</td><td>26.8</td></tr>
-<tr><td>AVI (isolability)</td><td>0.291</td><td>0.001<br>Д 0.301<br>Т 0.079</td></tr>
-</table>
-<p class="fn">* Контроль — 100 случайных перемешиваний МО при тех же размерах кластеров (Louvain не участвует): финал значимо выше контроля по всем строкам (p &lt; 0.001). <b>Д</b> — вариант «только дороги» (8 ближайших соседей по расстоянию), <b>Т</b> — вариант «только траты» (граф профилей без дорог). ARI и Purity — против официального перечня: ARI по всем МО официальных агломераций (диапазон — недетерминизм Louvain, 872–874 кластера), Purity — по плотным кластерам (3+ МО). SW, CH, S<sub>Dbw</sub> — внутренние индексы типологии 14 экономических типов (профильное пространство; для Д и Т неприменимы), они — критерий оценки, а не цель оптимизации: пайплайн тюнился по purity/ARI на внешнем референсе. AVI — доля веса кластера, уходящая внутрь него (графовая метрика).</p>
+      <article class="type" data-t="new">
+        <div class="type-img"><img src="img/type_new_yoshkar.png" alt="Карта нового рыночного кластера вокруг Йошкар-Олы на границе Марий Эл и Кировской области" width="1600" height="1200" loading="lazy"></div>
+        <div>
+          <div class="tag"><i></i>Тип 3</div>
+          <h3>Новый рыночный кластер</h3>
+          <div class="count"><b class="num">79</b><span>кластеров не пересекаются с официальными агломерациями — больше, чем двух других типов вместе</span></div>
+          <p class="ex">Пример: Йошкар-Ола</p>
+          <p>Столицы Марий Эл нет в официальном перечне. По тратам вокруг нее складывается кластер из 16 муниципалитетов: районы Марий Эл и соседние районы Кировской области — Советский, Яранский, Кикнурский и другие.</p>
+          <p class="also">Еще четыре новых кластера — ниже: столицы, которых нет в перечне, и промышленный союз на границе областей.</p>
+        </div>
+      </article>
 
-<h2>Ограничения</h2>
-<div class="warn"><b>Радиус 50 км подобран на официальном перечне</b> — доступном эталонном наборе данных. 50 км — оптимум по соответствию официальному перечню: по чистоте, количеству и размеру кластеров (30 км → 86 кластеров, чистота 0.997; 75 км → 71, чистота 0.713).</div>
-<ul>
-<li><b>Восточные МО слишком большие.</b> Восточнее ~60° восточной долготы 67% МО не имеют соседей в пределах 50 км (медианное расстояние 73 км против 45 км на западе) — метод не видит там агломерации. Необходимо более тонкое районирование.</li>
-<li>Рёбра — прокси потоков (дороги + сходство трат); матриц потоков «кто куда ездит» (OD) у нас нет. Индекс мобильности Сбера использован только для валидации, не как признак.</li>
-<li>Цены региональные — внутри региона кластеры не различаются по цене.</li>
-<li>Зарплаты — средние, не медианные; агрегаты не взвешены по населению.</li>
-<li>Официальный перечень — валидация, а не цель; расхождения между ним и рыночными кластерами — один из результатов.</li>
-</ul>
-</div></section>
+      <div class="more-new">
+        <figure>
+          <img src="img/type_new_arkhangelsk.png" alt="Новый рыночный кластер Архангельск — Северодвинск" width="1600" height="1200" loading="lazy">
+          <figcaption><b>Архангельск — Северодвинск</b> 4 муниципалитета. Крупнейшая агломерация Севера, которой нет в официальном перечне.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/type_new_smolensk.png" alt="Новый рыночный кластер вокруг Смоленска" width="1600" height="1200" loading="lazy">
+          <figcaption><b>Смоленск</b> 13 муниципалитетов. Областной центр и соседние районы живут как одна территория.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/type_new_murom.png" alt="Новый рыночный кластер Муром — Выкса — Кулебаки" width="1600" height="1200" loading="lazy">
+          <figcaption><b>Муром — Выкса — Кулебаки</b> 6 муниципалитетов на границе Владимирской и Нижегородской областей.</figcaption>
+        </figure>
+        <figure>
+          <img src="img/type_new_biysk.png" alt="Новый рыночный кластер вокруг Бийска" width="1600" height="1200" loading="lazy">
+          <figcaption><b>Бийск — Белокуриха</b> 9 муниципалитетов Алтайского края, включая курорт Белокуриху.</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
-<script>window.L||document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
-<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
-<script type="module" src="app.js"></script>
-</body></html>
+  <section class="sec" id="checks">
+    <div class="wrap">
+      <div class="sec-h">
+        <div class="k">Проверки</div>
+        <div>
+          <h2>Как мы проверяли связь</h2>
+          <p>Модель сравнивали с упрощенными версиями и подбирали параметры по официальному перечню — единственной доступной разметке.</p>
+        </div>
+      </div>
+      <div class="checks">
+        <div class="check">
+          <h3>Траты сдвигают границы</h3>
+          <p>Совпадение с официальным перечнем по индексу ARI: 1 — полное совпадение, 0 — случайное.</p>
+          <div class="bars">
+            <div class="bar ours"><span>Траты + расстояние</span><span class="track"><i style="width:73%"></i></span><span class="v num">0,73</span></div>
+            <div class="bar"><span>Только расстояние</span><span class="track"><i style="width:65.8%"></i></span><span class="v num">0,66</span></div>
+            <div class="bar"><span>Только траты</span><span class="track"><i style="width:5%"></i></span><span class="v num">0,05</span></div>
+          </div>
+          <p style="margin-top:20px;font-size:15px;color:var(--muted)">У полной модели ARI 0,72–0,74 в зависимости от окна.</p>
+        </div>
+        <div class="check">
+          <h3>Почему 50 км</h3>
+          <p>Чистота — доля муниципалитетов официальной агломерации, которые модель не оторвала от своих.</p>
+          <table class="thr">
+            <thead><tr><th>Порог</th><th>Кластеров</th><th>Чистота</th></tr></thead>
+            <tbody>
+              <tr><td>30 км — агломерации распадаются</td><td class="num">86</td><td class="num">0,997</td></tr>
+              <tr class="ours"><td>50 км</td><td class="num">133</td><td class="num">0,965</td></tr>
+              <tr><td>75–100 км — захват чужих регионов</td><td class="num">—</td><td class="num">0,71–0,61</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="check" style="grid-column:1/-1">
+          <h3>Границы устойчивы во времени</h3>
+          <p>Кластеры пересчитали на семи полугодовых окнах с шагом в квартал, с января 2023 по декабрь 2024 года. Состав кластеров между соседними окнами совпадает на 97–99% по коэффициенту Жаккара.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="next">
+    <div class="wrap">
+      <div class="sec-h">
+        <div class="k">Что дальше</div>
+        <div><h2>Кому пригодятся рыночные границы</h2></div>
+      </div>
+      <div class="next">
+        <div>
+          <h3>Регионам и муниципалитетам</h3>
+          <p>Кластер показывает, с кем из соседей у территории общая жизнь. С ними имеет смысл вместе планировать дороги, больницы, транспорт и крупные проекты — даже если сосед в другом регионе.</p>
+        </div>
+        <div>
+          <h3>Бизнесу</h3>
+          <p>Если добавить к тратам данные о зарплатах, видно, где жизнь дороже, чем позволяют доходы. Там особенно нужны рассрочки, акции и сервисы, которые делают покупки дешевле.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="data">
+    <div class="wrap open">
+      <div>
+        <h2>Все можно проверить и пересчитать</h2>
+        <p>Код, параметры модели и границы всех кластеров лежат в открытом репозитории. Поменяйте порог расстояния или число соседей — и посмотрите, как изменятся границы.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="https://github.com/" rel="noopener">Репозиторий на GitHub <span class="arr" aria-hidden="true">→</span></a>
+          <a class="btn btn-ghost" href="map.html">Интерактивная карта</a>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:22px;margin-bottom:16px">Ограничения</h3>
+        <ul class="limits">
+          <li>В анализе 2144 муниципалитета из 2548: исключены те, по которым меньше 10 месяцев данных.</li>
+          <li>По трем официальным агломерациям данных недостаточно, в сравнении они не участвуют.</li>
+          <li>Данные Сбера отражают траты его клиентов. Где их доля мала, профиль трат может быть смещен.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" id="team">
+    <div class="wrap team">
+      <div>
+        <div class="k">О проекте</div>
+        <h2>«Архипелаги изобилия»</h2>
+        <p>Исследование для <a href="https://sber.ru/sberindex/konkurs_sberindex">конкурса СберИндекса</a>. Мы кластеризовали 2144 муниципалитета России по профилю трат за 2023–2024 годы и дорожной связности и сравнили 133 получившихся кластера с 52 официальными агломерациями из перечня ИЭГ.</p>
+      </div>
+      <div>
+        <div class="k">Команда «Урбан Лайф»</div>
+        <ul class="people">
+          <li><b>Леонид Харлов</b><a href="https://t.me/leonharlov">@leonharlov</a></li>
+          <li><b>Андрей Дорожный</b><a href="https://t.me/dorozhnij">@dorozhnij</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Проект для <a href="https://sber.ru/sberindex/konkurs_sberindex">конкурса СберИндекса</a> · 2026</span>
+    <span>Команда «Урбан Лайф»: Леонид Харлов, Андрей Дорожный</span>
+    <span>Данные: СберИндекс, 2023–2024 · официальный перечень агломераций — методология Института экономики города</span>
+  </div>
+</footer>
+
+</body>
+</html>
