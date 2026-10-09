@@ -1,0 +1,474 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Границы агломераций по платежам</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css"
+      onerror="this.onerror=null;this.href='https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.css'">
+<style>
+  :root {
+    --ink: #1d2433; --muted: #667085; --line: #e4e7ec; --soft: #f2f4f7;
+    --accent: #2f5bea; --shadow: 0 4px 18px rgba(16,24,40,.20);
+  }
+  html, body { margin: 0; height: 100%; font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; color: var(--ink); }
+  #map { height: 100%; background: #e9ecef; }
+
+  /* ---------- панель ---------- */
+  #panel { position: absolute; top: 12px; left: 12px; z-index: 1000;
+           width: min(460px, calc(100vw - 24px)); max-height: calc(100% - 24px);
+           display: flex; flex-direction: column;
+           background: rgba(255,255,255,.97); backdrop-filter: blur(6px);
+           border-radius: 12px; box-shadow: var(--shadow); font-size: 13px; }
+  #panel > header { display: flex; align-items: center; gap: 10px; padding: 12px 14px; cursor: pointer; user-select: none; }
+  #panel h1 { font-size: 16px; line-height: 1.25; margin: 0; }
+  #panel .sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+  #panel .hdr-txt { flex: 1; }
+  #toggle { flex: none; width: 28px; height: 28px; border: 0; border-radius: 8px; background: var(--soft);
+            cursor: pointer; font-size: 14px; color: var(--ink); transition: transform .15s; }
+  #panel.collapsed #toggle { transform: rotate(180deg); }
+  #body { overflow-y: auto; padding: 0 14px 14px; border-top: 1px solid var(--line); }
+  #panel.collapsed #body { display: none; }
+  #panel.collapsed > header { padding-bottom: 12px; }
+
+  .lead { margin: 12px 0 10px; line-height: 1.45; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-bottom: 4px; }
+  .stat { background: var(--soft); border-radius: 8px; padding: 8px 10px; }
+  .stat b { display: block; font-size: 18px; font-variant-numeric: tabular-nums; line-height: 1.1; }
+  .stat span { font-size: 11px; color: var(--muted); line-height: 1.25; display: block; margin-top: 2px; }
+
+  .group { margin-top: 14px; }
+  .group-h { display: flex; align-items: baseline; justify-content: space-between;
+             font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted);
+             margin-bottom: 2px; }
+  .group-h .acts button { border: 0; background: none; color: var(--accent); font-size: 11px; cursor: pointer; padding: 0 0 0 8px; text-transform: none; letter-spacing: 0; font-weight: 600; }
+  .group-h .acts button:hover { text-decoration: underline; }
+
+  .row { display: flex; align-items: flex-start; gap: 8px; padding: 5px 6px; margin: 0 -6px; border-radius: 6px; cursor: pointer; }
+  .row:hover { background: var(--soft); }
+  .row input { margin: 2px 0 0; flex: none; accent-color: var(--accent); }
+  .sw { flex: none; width: 16px; height: 16px; border-radius: 4px; box-sizing: border-box; margin-top: 0; }
+  .sw.fill { background: color-mix(in srgb, var(--c) 45%, #fff); border: 2px solid var(--c); }
+  .sw.dash { border: 2px dashed var(--c); }
+  .sw.dot  { border: 2px dotted var(--c); }
+  .sw.mo   { border: 1.5px solid #333; }
+  .txt { flex: 1; line-height: 1.3; }
+  .txt b { font-weight: 600; }
+  .txt small { display: block; color: var(--muted); font-size: 11.5px; margin-top: 1px; }
+  .cnt { flex: none; font-variant-numeric: tabular-nums; font-size: 11.5px; color: var(--muted);
+         background: var(--soft); border-radius: 10px; padding: 1px 8px; }
+  .row:has(input:not(:checked)) .txt, .row:has(input:not(:checked)) .sw { opacity: .45; }
+  .row:has(input:not(:checked)) .cnt { opacity: .6; }
+  .hint { font-size: 11.5px; color: var(--muted); margin: 8px 0 0; line-height: 1.4; }
+
+  .basemap { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+  .basemap select { flex: 1; padding: 5px 8px; border: 1px solid var(--line); border-radius: 6px; background: #fff; font: inherit; }
+
+  /* ---------- методология ---------- */
+  .about { margin-top: 14px; border-top: 1px solid var(--line); padding-top: 4px; }
+  .about > details > summary, .about details details > summary { cursor: pointer; font-weight: 600; padding: 7px 0; list-style: none; display: flex; align-items: center; gap: 6px; }
+  .about summary::-webkit-details-marker { display: none; }
+  .about summary::before { content: "▸"; font-size: 11px; color: var(--muted); transition: transform .12s; display: inline-block; width: 10px; }
+  .about details[open] > summary::before { transform: rotate(90deg); }
+  .about ol, .about ul { margin: 2px 0 8px 18px; padding: 0; line-height: 1.45; }
+  .about li { margin: 3px 0; }
+  .about .nest { margin-left: 4px; padding-left: 10px; border-left: 2px solid var(--line); }
+  .about .nest > details { margin: 2px 0; }
+
+  /* ---------- статус ---------- */
+  #status { position: absolute; bottom: 14px; left: 12px; z-index: 1000; background: rgba(255,255,255,.95);
+            padding: 5px 11px; border-radius: 999px; font-size: 12px; color: var(--muted); box-shadow: 0 1px 6px rgba(16,24,40,.2); }
+
+  /* ---------- тултипы и попапы ---------- */
+  .leaflet-tooltip.tt { border: 0; border-radius: 8px; padding: 7px 10px; box-shadow: var(--shadow); color: var(--ink); white-space: normal; width: 340px; max-width: 340px; box-sizing: border-box; }
+  .leaflet-tooltip.tt::before { display: none; }
+  .tt .t { font-weight: 600; font-size: 13px; line-height: 1.25; }
+  .tt .m { font-size: 11.5px; color: var(--muted); margin-top: 2px; display: flex; align-items: center; gap: 5px; }
+  .tt .go { font-size: 10.5px; color: #98a2b3; margin-top: 3px; }
+  .dot { display: inline-block; flex: none; width: 10px; height: 10px; border-radius: 50%; }
+
+  .leaflet-popup-content-wrapper { border-radius: 12px; box-shadow: var(--shadow); }
+  .leaflet-popup-content { margin: 12px 14px; font-size: 13px; line-height: 1.4; max-height: 440px; overflow-y: auto; color: var(--ink); }
+  .ph { display: flex; gap: 9px; align-items: flex-start; padding-right: 14px; }
+  .ph .dot { width: 12px; height: 12px; margin-top: 4px; }
+  .pt { font-size: 15px; font-weight: 700; line-height: 1.25; }
+  .ps { font-size: 12px; color: var(--muted); margin-top: 2px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 2px; }
+  .chip { background: var(--soft); border-radius: 999px; padding: 2px 9px; font-size: 11.5px; color: #475467; }
+  .sec { font-size: 11px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--muted); margin: 12px 0 4px; }
+  .core { display: grid; grid-template-columns: 1fr auto; gap: 2px 10px; font-size: 12.5px; align-items: center; }
+  .core .bar { grid-column: 1 / -1; height: 4px; background: var(--soft); border-radius: 2px; margin-bottom: 4px; overflow: hidden; }
+  .core .bar i { display: block; height: 100%; background: var(--c, var(--accent)); border-radius: 2px; }
+  .core .v { font-variant-numeric: tabular-nums; color: var(--muted); }
+  .mol { max-height: 200px; overflow-y: auto; font-size: 12px; background: #fafbfc; border: 1px solid var(--line); border-radius: 8px; padding: 6px 10px; margin-top: 4px; line-height: 1.55; }
+  .popnote { font-size: 12px; color: #475467; margin-top: 8px; }
+  details.pd > summary { cursor: pointer; font-size: 12.5px; font-weight: 600; color: var(--accent); padding: 4px 0; }
+
+  .leaflet-control-zoom { border: 0 !important; box-shadow: var(--shadow) !important; border-radius: 10px !important; overflow: hidden; }
+</style>
+</head>
+<body>
+<div id="panel">
+  <header id="panel-head">
+    <div class="hdr-txt">
+      <h1>Рыночные агломерации, 2024</h1>
+      <div class="sub"><a href="index.html" style="color:inherit">← к исследованию</a> · по данным о платежах · окно дек 2024</div>
+    </div>
+    <button id="toggle" type="button" aria-label="Свернуть панель" title="Свернуть / развернуть">▲</button>
+  </header>
+
+  <div id="body">
+    <p class="lead">Где люди тратят деньги — там и агломерация. «Рыночные агломерации» частично совпадают с официальными, но не совсем.</p>
+
+    <div class="stats">
+      <div class="stat"><b>2144</b><span>муниципальных образований</span></div>
+      <div class="stat"><b>52</b><span>агломерации по перечням Росстата</span></div>
+      <div class="stat"><b>133</b><span>выявлено рыночных агломераций с 3+ МО</span></div>
+    </div>
+
+    <!-- ===== Легенда / фильтры ===== -->
+    <div class="group">
+      <div class="group-h"><span>Рыночные кластеры</span>
+        <span class="acts"><button type="button" id="all_on">все</button><button type="button" id="all_off">ничего</button></span></div>
+
+      <label class="row" data-key="match"><input type="checkbox" id="f_match" checked>
+        <span class="sw fill" style="--c:#2ca02c"></span>
+        <span class="txt"><b>Совпадает с официальной</b><small>состав кластера = состав агломерации Росстата</small></span><span class="cnt">11</span></label>
+
+      <label class="row" data-key="match_partial"><input type="checkbox" id="f_partial" checked>
+        <span class="sw fill" style="--c:#ff9f43"></span>
+        <span class="txt"><b>Часть официальной</b><small>покрывает лишь часть состава офциальной агломерации</small></span><span class="cnt">27</span></label>
+
+      <label class="row" data-key="match_expanded"><input type="checkbox" id="f_expanded" checked>
+        <span class="sw fill" style="--c:#17becf"></span>
+        <span class="txt"><b>Шире официальной</b><small>рынок добавил МО за пределами официальной агломерации</small></span><span class="cnt">11</span></label>
+
+      <label class="row" data-key="merge"><input type="checkbox" id="f_merge" checked>
+        <span class="sw fill" style="--c:#1f77b4"></span>
+        <span class="txt"><b>Объединяет разные агломерации</b><small>внутри несколько официально разных агломераций</small></span><span class="cnt">5</span></label>
+
+      <label class="row" data-key="new"><input type="checkbox" id="f_new" checked>
+        <span class="sw fill" style="--c:#e41a1c"></span>
+        <span class="txt"><b>Не входит ни в одну официальную агломерацию</b><small>агломерации, не выявленные Росстатом</small></span><span class="cnt">79</span></label>
+
+      <label class="row" data-key="small"><input type="checkbox" id="f_small">
+        <span class="sw fill" style="--c:#999999"></span>
+        <span class="txt"><b>Малые кластеры</b><small>1–2 МО, по умолчанию скрыты</small></span><span class="cnt">739</span></label>
+    </div>
+
+    <div class="group">
+      <div class="group-h"><span>Официальный перечень Росстата*</span></div>
+
+      <label class="row"><input type="checkbox" id="f_official" checked>
+        <span class="sw dash" style="--c:#7f3fbf"></span>
+        <span class="txt"><b>Цельные агломерации</b><small>Все МО официальной агломерации принадлежат к одному рыночному кластеру</small></span><span class="cnt">49</span></label>
+
+      <label class="row"><input type="checkbox" id="f_offscat" checked>
+        <span class="sw dot" style="--c:#e0a800"></span>
+        <span class="txt"><b>Агломерации, разделённые рынком</b><small>МО официальной агломерации разбросаны по нескольким рыночным кластерам</small></span><span class="cnt">3</span></label>
+
+      <p class="hint">* Недостаточно данных по 3 официальным агломерациям. Они были исключены из анализа.</p>
+    </div>
+
+    <div class="group">
+      <div class="group-h"><span>Карта</span></div>
+      <label class="row"><input type="checkbox" id="f_mo">
+        <span class="sw mo"></span>
+        <span class="txt"><b>Границы отдельных МО</b><small>тонкий контур без заливки</small></span></label>
+      <div class="basemap"><label for="f_base" style="color:var(--muted)">Подложка</label>
+        <select id="f_base">
+          <option value="gray" selected>серая</option>
+          <option value="topo">топо</option>
+          <option value="sat">спутник</option>
+        </select></div>
+      <p class="hint">Наведите на область — краткая справка, клик — подробности и состав кластера. Строка легенды при наведении подсвечивает свои кластеры на карте.</p>
+    </div>
+
+    <!-- ===== Методология ===== -->
+    <div class="about">
+      <details>
+        <summary>Как это посчитано</summary>
+        <ol>
+          <li>для каждого из 2144 МО составляем «профиль расходов» за период 2023–2024 гг.;</li>
+          <li>МО соединяем в сеть по дорогам, где расстояние между соседями меньше 50 км;</li>
+          <li>находим кластеры — МО с похожим профилем расходов, сообщества в построенной сети (алгоритм Лувена);</li>
+          <li>проверяем кластеры на стабильность: окно 6 месяцев двигается с шагом квартал, стабильность высокая (Жаккард 0.97–0.99);</li>
+          <li>сравниваем полученные «рыночные агломерации» с официальным перечнем Росстата — где рынок агломерации объединяет, где делит, где расширяет, а где находит новые.</li>
+        </ol>
+
+        <details>
+          <summary>Технические детали</summary>
+          <div class="nest">
+            <details open><summary>1. Признаки МО</summary>
+              <ul>
+                <li>каждый МО — вектор из 6 значений: траты по категориям (доли по продуктам, медицине, кафе, транспорту, маркетплейсам) и log от общего объёма трат;</li>
+                <li>log нужен, чтобы близкими считались МО и со схожей структурой, и сопоставимого масштаба: доли нормализуют структуру, а log-объём возвращает масштаб — и сжимает порядки величин, чтобы избежать излишних искажений от гигантов вроде Москвы;</li>
+                <li>сглаживание скользящим средним за 3 месяца: убираем случайные всплески месячных трат (праздники, погода, сезонные платежи), чтобы 6-месячный профиль отражал устойчивое поведение, а не шум одного месяца;</li>
+                <li>исключены МО с данными &lt; 10 месяцев (2548 → 2144): профиль строится по 6-месячным окнам, а для устойчивости к сдвигу окна с шагом квартал нужно ≥ 10 месяцев истории — иначе профиль держится на нескольких точках.</li>
+              </ul>
+            </details>
+            <details><summary>2. Построение сети</summary>
+              <ul>
+                <li>из ~2.3 млн возможных пар МО подбираем кандидатов: МО в радиусе 50 км. Радиус подобран по структуре сети: при 30 км излишняя фрагментация (чистота 1.0, но 86 кластеров), при 75–100 км слияние соседних агломераций (чистота 0.61); 50 км — хороший компромисс с высокой чистотой (0.97). Официальный перечень использован как единственный доступный размеченный критерий качества;</li>
+                <li>вес ребра сети — косинусное сходство 6-месячных профилей расходов;</li>
+                <li>из кандидатов на каждое МО оставляем топ-8 самых похожих соседей (kNN) — сеть разреженная: 3637 рёбер при 2144 узлах; 8 выбрано поиском по сетке (8/15/25): при большем k сеть «перекраивается» и качество падает (метрика q: 0.841 при k=8 vs 0.757 при k=15 и 0.675 при k=25).</li>
+                <li>топ-8 — это <i>связи</i>, а не кластеры: каждое МО соединяется ребром с 8 ближайшими. Кластеры получаются на следующем шаге (секция 3) — алгоритм Лувена находит связные группы, внутри которых рёбер много и они «тяжёлые», а между группами рёбер мало; каждое МО попадает ровно в один кластер.</li>
+              </ul>
+            </details>
+            <details><summary>3. Кластеризация во времени</summary>
+              <ul>
+                <li>алгоритм Лувена (igraph, multilevel) на каждом 6-месячном окне;</li>
+                <li>окно движется с шагом в квартал (7 окон, янв 2023 – дек 2024);</li>
+                <li>стабильность по Жаккарду между окнами 0.97–0.99;</li>
+                <li>финальное окно: 3637 рёбер, 133 кластера ≥ 3 МО.</li>
+              </ul>
+            </details>
+            <details><summary>4. Сравнение с официальным перечнем Росстата</summary>
+              <ul>
+                <li>официально: 52 агломерации, 381 МО (96% покрыто данными);</li>
+                <li>совпадает: 11; лишь часть официальной: 27; ядро + расширение ≥ 30%: 11; рынок объединяет: 5; новая рыночная: 79;</li>
+                <li>отдельно отмечены 3 официальные, которые рынок разнёс.</li>
+              </ul>
+            </details>
+            <details><summary>Условные обозначения</summary>
+              <ul>
+                <li><b>МО</b> — муниципальный округ (или муниципальный район), базовая территориальная единица: 2548 в России, 2144 в нашем анализе;</li>
+                <li>официальный перечень — список из 52 агломераций Росстата, составленных из МО («золотой стандарт» для валидации);</li>
+                <li><b>Жаккард</b> — коэффициент совпадения состава двух кластеров (общие МО / все МО обоих), 1 = идентичны;</li>
+                <li><b>«чистота» (purity)</b> — доля МО из официального перечня, которые рынок «держит в своей паре»: их МО попали в кластер, где доминирует та же официальная агломерация. 1.0 = рынок никогда не рвёт официальную пару, 0.6 = рвёт каждую четвёртую;</li>
+                <li><b>ядро</b> — топ-3 МО кластера по экономической активности (суммарные расходы × население);</li>
+                <li><b>kNN</b> — k ближайших соседей: у каждого МО оставляем k самых похожих кандидатов на ребро;</li>
+                <li><b>Лувен (Louvain)</b> — алгоритм поиска сообществ в сети: находит группы узлов, плотно связанных между собой.</li>
+              </ul>
+            </details>
+          </div>
+        </details>
+      </details>
+    </div>
+  </div>
+</div>
+<div id="map"></div>
+<div id="status">загрузка…</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+<script>window.L || document.write('<script src="https://cdn.jsdelivr.net/npm/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
+<script>window.L || document.write('<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"><\/script>')</script>
+<script>
+if (!window.L) {
+  document.getElementById('status').textContent = 'Не удалось загрузить Leaflet (cdnjs, jsDelivr и unpkg недоступны) — проверьте сеть или подключите leaflet локально';
+  throw new Error('Leaflet failed to load from all CDNs');
+}
+const map = L.map('map', {zoomControl: false}).setView([55.5, 60], 4);
+L.control.zoom({position: 'bottomright'}).addTo(map);
+
+// ---------- подложки (если одна заблокирована сетью — переключаемся на следующую) ----------
+const esri = (path, max) => L.tileLayer(`https://server.arcgisonline.com/ArcGIS/rest/services/${path}/MapServer/tile/{z}/{y}/{x}`,
+  {attribution: 'Tiles © Esri', maxZoom: max || 12});
+const base = {
+  gray:  esri('Canvas/World_Light_Gray_Base', 12),
+  topo:  esri('World_Topo_Map', 12),
+  sat:   esri('World_Imagery', 12),
+};
+const baseOrder = ['gray', 'topo', 'sat'];
+const baseSel = document.getElementById('f_base');
+const statusEl = document.getElementById('status');
+let curKey = 'gray', curBase = null, tileErr = 0;
+function setBase(key, note) {
+  if (curBase) map.removeLayer(curBase);
+  curKey = key; curBase = base[key]; tileErr = 0;
+  curBase.addTo(map);
+  baseSel.value = key;
+  if (note) statusEl.textContent = note;
+}
+baseOrder.forEach(k => {
+  base[k].on('tileerror', () => {
+    if (base[k] !== curBase || ++tileErr <= 16) return;
+    const next = baseOrder[baseOrder.indexOf(k) + 1];
+    if (next) setBase(next, `подложка: ${next} (предыдущая недоступна)`);
+  });
+  base[k].on('tileload', () => { if (base[k] === curBase) tileErr = 0; });
+});
+setBase('gray');
+baseSel.addEventListener('change', e => setBase(e.target.value));
+
+// ---------- фильтры и словари ----------
+const filters = {
+  match: document.getElementById('f_match'),
+  match_partial: document.getElementById('f_partial'),
+  match_expanded: document.getElementById('f_expanded'),
+  merge: document.getElementById('f_merge'),
+  new:   document.getElementById('f_new'),
+  small: document.getElementById('f_small'),
+  mo:    document.getElementById('f_mo'),
+  official: document.getElementById('f_official'),
+  official_scattered: document.getElementById('f_offscat'),
+};
+const typeKey = { match: 'match', match_partial: 'match_partial', match_expanded: 'match_expanded', merge: 'merge', new_market: 'new' };
+const TYPE_COLOR = { match: '#2ca02c', match_partial: '#ff9f43', match_expanded: '#17becf', merge: '#1f77b4', new_market: '#e41a1c' };
+const SMALL_COLOR = '#999999', OFF_COLOR = '#7f3fbf', SCAT_COLOR = '#e0a800';
+const TYPE_RU = {
+  match: 'совпадает с официальной агломерацией',
+  match_partial: 'часть официальной агломерации (рынок покрывает не весь её состав)',
+  match_expanded: 'ядро совпадает, рынок расширил состав',
+  merge: 'рынок объединяет официально разные агломерации',
+  new_market: 'новая рыночная агломерация (нет в официальном перечне)',
+};
+const TYPE_SHORT = {
+  match: 'Совпадает с официальной',
+  match_partial: 'Часть официальной',
+  match_expanded: 'Ядро совпадает, состав шире',
+  merge: 'Объединяет агломерации',
+  new_market: 'Новая рыночная',
+};
+let layer = null, outlineLayer = null, officialLayer = null, officialScatLayer = null;
+const sizeByCluster = {};
+
+// фильтр: кластеры 1-2 МО вынесены в отдельный чекбокс, тип у них свой
+function filterKey(p) { return p.cluster_size <= 2 ? 'small' : typeKey[p.type]; }
+function colorOf(p) { return p.cluster_size <= 2 ? SMALL_COLOR : (TYPE_COLOR[p.type] || SMALL_COLOR); }
+function shortOf(p) { return p.cluster_size <= 2 ? 'Малый кластер (1–2 МО)' : (TYPE_SHORT[p.type] || p.type); }
+
+function moStyle(f) {
+  const on = filters[filterKey(f.properties)]?.checked;
+  return { color: '#000', weight: 1, opacity: on ? 0.25 : 0.08, fill: false };
+}
+function outlineStyle(f) {
+  const c = colorOf(f.properties);
+  return { color: c, weight: 2, fillColor: c, fillOpacity: 0.40, opacity: 0.9, lineJoin: 'round' };
+}
+const outlineHover = { weight: 3.5, fillOpacity: 0.62, opacity: 1 };
+const officialStyle = () => ({ color: OFF_COLOR, weight: 3.5, dashArray: '8 5', fill: false });
+const officialScatStyle = () => ({ color: SCAT_COLOR, weight: 4, dashArray: '2 5', lineCap: 'round', fill: false });
+
+// ---------- вспомогательное для тултипов/попапов ----------
+function esc(s) { return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function fmtM(v) { return v >= 1e12 ? (v/1e12).toFixed(1) + ' трлн ₽/мес' : (v/1e9).toFixed(1) + ' млрд ₽/мес'; }
+function plural(n, a, b, c) { const m = n % 100, d = n % 10; return (m > 10 && m < 20) ? c : d === 1 ? a : (d >= 2 && d <= 4) ? b : c; }
+function tip(title, color, meta, hint) {
+  return `<div class="t">${esc(title)}</div>
+    <div class="m"><i class="dot" style="background:${color}"></i>${meta}</div>` +
+    (hint ? `<div class="go">${hint}</div>` : '');
+}
+function head(title, color, sub, dashed) {
+  const dot = dashed ? `<i class="dot" style="background:none;border:2px dashed ${color};box-sizing:border-box"></i>`
+                     : `<i class="dot" style="background:${color}"></i>`;
+  return `<div class="ph">${dot}<div><div class="pt">${esc(title)}</div><div class="ps">${sub}</div></div></div>`;
+}
+function molBlock(list) {
+  if (!list || !list.length) return '';
+  return `<details class="pd"><summary>Состав (${list.length} МО)</summary><div class="mol">${list.map(esc).join('<br>')}</div></details>`;
+}
+const POPUP = {maxWidth: 340, minWidth: 250};
+const TIP = {sticky: true, direction: 'top', offset: [0, -6], className: 'tt', opacity: 1};
+
+function render() {
+  [layer, outlineLayer, officialLayer, officialScatLayer].forEach(l => l && map.removeLayer(l));
+  layer = outlineLayer = officialLayer = officialScatLayer = null;
+
+  // рыночные кластеры: скрытые типы вообще не добавляем (иначе они ловили бы наведение)
+  outlineLayer = L.geoJson(outlines, {
+    filter: f => filters[filterKey(f.properties)]?.checked,
+    style: outlineStyle,
+    onEachFeature: (f, l) => {
+      const p = f.properties, c = colorOf(p);
+      const n = p.mo_list ? p.mo_list.length : (sizeByCluster[p.cluster] || p.cluster_size || 0);
+      const nTxt = `${n} ${plural(n, 'МО', 'МО', 'МО')}`;
+      l.bindTooltip(tip(p.name, c, `${esc(shortOf(p))} · ${nTxt}`, 'клик — подробности'), TIP);
+
+      const core = (p.core && p.core.length) ? (() => {
+        const mx = Math.max(...p.core.map(x => x[1])) || 1;
+        return `<div class="sec">Ядро · топ-3 по экономической активности</div>
+          <div class="core" style="--c:${c}">${p.core.map(([nm, v]) =>
+            `<span>${esc(nm)}</span><span class="v">${fmtM(v)}</span><div class="bar"><i style="width:${(v/mx*100).toFixed(0)}%"></i></div>`).join('')}</div>`;
+      })() : '';
+      l.bindPopup(
+        head(p.name, c, esc(TYPE_RU[p.type] || p.type)) +
+        `<div class="chips"><span class="chip">${nTxt}</span><span class="chip">кластер ${esc(p.cluster)}</span></div>` +
+        core + molBlock(p.mo_list), POPUP);
+
+      l.on('mouseover', () => l.setStyle(outlineHover));
+      l.on('mouseout',  () => l.setStyle(outlineStyle(f)));
+    },
+  }).addTo(map);
+
+  if (filters.mo.checked) {
+    layer = L.geoJson(current, {
+      style: moStyle,
+      onEachFeature: (f, l) => {
+        const p = f.properties, c = colorOf(p);
+        l.bindTooltip(tip(p.municipal_district_name, c, esc(p.region_name)), TIP);
+        l.bindPopup(
+          head(p.municipal_district_name, c, esc(p.region_name)) +
+          `<div class="chips"><span class="chip">кластер ${esc(p.cluster)}</span><span class="chip">${esc(p.cluster_size)} МО в кластере</span></div>` +
+          `<div class="popnote">${esc(TYPE_RU[p.type] || p.type)}</div>` +
+          (p.dominant ? `<div class="popnote">Ближайшая официальная: <b>${esc(p.dominant)}</b></div>` : ''), POPUP);
+      },
+    }).addTo(map);
+  }
+
+  const offF = official.features;
+  if (filters.official.checked) {
+    officialLayer = L.geoJson({type: 'FeatureCollection', features: offF.filter(f => !f.properties.scattered)}, {
+      style: officialStyle,
+      onEachFeature: (f, l) => {
+        const p = f.properties;
+        l.bindTooltip(tip(p.agg, OFF_COLOR, 'Официальная агломерация (Росстат)'), TIP);
+        l.bindPopup(head(p.agg, OFF_COLOR, 'Официальный перечень Росстата', true) +
+          `<div class="popnote">Рынок воспроизвёл агломерацию цельно.</div>` + molBlock(p.mo_list), POPUP);
+        l.on('mouseover', () => l.setStyle({weight: 5.5}));
+        l.on('mouseout',  () => l.setStyle(officialStyle(f)));
+      },
+    }).addTo(map);
+  }
+  if (filters.official_scattered.checked) {
+    officialScatLayer = L.geoJson({type: 'FeatureCollection', features: offF.filter(f => f.properties.scattered)}, {
+      style: officialScatStyle,
+      onEachFeature: (f, l) => {
+        const p = f.properties;
+        l.bindTooltip(tip(p.agg, SCAT_COLOR, 'Официальная · разнесена рынком'), TIP);
+        l.bindPopup(head(p.agg, SCAT_COLOR, 'Официальный перечень Росстата', true) +
+          `<div class="popnote">Рынок разнёс эту агломерацию: её МО разбросаны по нескольким рыночным кластерам.</div>` + molBlock(p.mo_list), POPUP);
+        l.on('mouseover', () => l.setStyle({weight: 6}));
+        l.on('mouseout',  () => l.setStyle(officialScatStyle(f)));
+      },
+    }).addTo(map);
+  }
+}
+
+// ---------- подсветка кластеров при наведении на строку легенды ----------
+function highlight(key) {
+  if (!outlineLayer) return;
+  outlineLayer.eachLayer(l => {
+    if (!key) { l.setStyle(outlineStyle(l.feature)); return; }
+    l.setStyle(filterKey(l.feature.properties) === key
+      ? {weight: 3.5, fillOpacity: 0.72, opacity: 1}
+      : {weight: 1, fillOpacity: 0.08, opacity: 0.25});
+  });
+}
+document.querySelectorAll('.row[data-key]').forEach(r => {
+  r.addEventListener('mouseenter', () => highlight(r.dataset.key));
+  r.addEventListener('mouseleave', () => highlight(null));
+});
+
+// ---------- панель ----------
+const panel = document.getElementById('panel');
+document.getElementById('panel-head').addEventListener('click', () => panel.classList.toggle('collapsed'));
+if (window.innerWidth < 720) panel.classList.add('collapsed');
+const MAIN = ['match', 'match_partial', 'match_expanded', 'merge', 'new'];
+document.getElementById('all_on').addEventListener('click',  () => { MAIN.forEach(k => filters[k].checked = true);  render(); });
+document.getElementById('all_off').addEventListener('click', () => { MAIN.forEach(k => filters[k].checked = false); render(); });
+
+const outlines = /*__OUTLINES__*/null;
+let current = null;
+const gj = /*__GJ__*/null;
+const official = /*__OFFICIAL__*/null;
+
+(function(){
+  current = gj;
+  gj.features.forEach(f => { const c = f.properties.cluster; sizeByCluster[c] = (sizeByCluster[c] || 0) + 1; });
+  render();
+  statusEl.textContent = `МО на карте: ${gj.features.length} · окно: дек 2024 · 133 кластера ≥ 3 МО`;
+})();
+Object.values(filters).forEach(c => c.addEventListener('change', render));
+</script>
+</body>
+</html>
