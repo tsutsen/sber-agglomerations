@@ -1,9 +1,6 @@
-# Конкурс СберИндекса: российские экономические агломерации
+# Выделяем экономические агломерации по данным от СберИндекса
 
-все исходные данные, все
-результаты и все скрипты, из которых они получены. Каждый результат в
-`data/results/` можно проследить до исходных файлов в `data/sources/` через
-ссылку на скрипт, указанный в `data/results/README.md`.
+Министерства выделяют официальные агломерации политически — в том числе из удобства: чтобы было понятно, куда и как направлять бюджеты. Но рынок не знает про административные границы и похожие люди живут по разные стороны муниципалитетов! Чтобы найти «похожих» соседей и сгруппировать их в _экономические_ агломерации мы посмотрели, сколько средств тратят пользователи Сбера и на какие категории товаров. Соединили муниципалитеты, связанные дорогами в пределах 50 км, и сгруппировали похожие по профилю расходов в рыночные кластеры.
 
 ## Что сделано
 
@@ -34,18 +31,16 @@ data/
   results/          зафиксированные финальные результаты: spatial_clusters.csv, metrics.csv, mo/, geojson/
   experiments/      результаты экспериментов (зафиксированные + входные в inputs/)
 scripts/
-  clustering/       самодостаточный пайплайн:
+  clustering/       пайплайн кластеризации:
     run.py          финальный пайплайн (7 окон → Louvain → Jaccard)
     metrics.py      ICVI-метрики
     features.py     профиль потребления МО по месяцам
-    config.py + config.yaml   все гиперпараметры (единственный источник)
-    network/graphs.py  дорога ≤cutoff + топ-K по сходству → граф
+    config.py + config.yaml   все гиперпараметры
+    network/graphs.py  дорога ≤ cutoff + топ-K по сходству → граф
     tune.py       сетка гиперпараметров → out/tune_grid.csv
     validate/     воспроизводимая валидация: нулевые модели, методы,
                   типология vs официальный перечень (3 скрипта, все работают)
-    experiments/  все эксперименты из отчёта (19 скриптов, все работают);
-                  вход — data/experiments/inputs/
-  archive/          референсные копии prep-скриптов исходного layout
+    experiments/  все эксперименты из отчёта (19 скриптов)
 methodology/        README.md (отчёт), EXPERIMENTS.md (журнал экспериментов)
 visualization/      лендинг: index_basket.html (монолит), site/ (сайт),
                     landing/ (исходники), build_landing.py (сборка)
@@ -54,28 +49,18 @@ visualization/      лендинг: index_basket.html (монолит), site/ (�
 ## Воспроизведение
 
 Всё запускается из корня репозитория (Python 3.12+; окружение — `requirements.txt`;
-для `viz` — node и `npm install` в `visualization/`):
+для обновления визуализаций нужен node и `npm install` в `visualization/`):
 
 ```bash
 python run_all.py all      # pipeline → metrics → validate → experiments → viz
-python run_all.py --help   # по шагам: pipeline, metrics, validate, experiments, viz, smoke
+python run_all.py experiments` пересобирает все эксперименты в `out/
+python run_all.py --help   # описание pipeline, metrics, validate, experiments, viz, smoke
 
-# или шаги напрямую:
+# или шаги по отдельности:
 python -m scripts.clustering.run          # 7 окон → out/clusters_all.csv, out/jaccard.csv, out/compare_final.csv
 python -m scripts.clustering.metrics      # ICVI-метрики → out/metrics.csv
 python -m scripts.clustering.validate.official   # типология vs официальный перечень → out/cluster_vs_official.csv
 ```
 
-Вход — `data/sources/` (словарь — `data/sources/README.md`), вход
-экспериментов — `data/experiments/inputs/`. Правило дерев результатов:
-`out/` — что пайплайн написал в этом прогоне (в git не идёт);
-`data/results/` и `data/experiments/` — зафиксированные результаты
-отчитанного прогона, уже в репозитории. Свежий прогон воспроизводит их с
-малым разбегом (Louvain без фиксированного seed; см. `methodology/EXPERIMENTS.md`),
-методика и выводы — там же.
-
-`python run_all.py experiments` пересобирает все эксперименты в `out/`
-(порядок по зависимостям, ~10 минут).
-
-Все гиперпараметры — в `scripts/clustering/config.yaml` (читается
-`config.py`, используется пайплайном и валидацией).
+Входные данные для финального пайплайна лежат в `data/sources/` 
+Входные данные для экспериментов — в `data/experiments/inputs/`
